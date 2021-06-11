@@ -8,11 +8,19 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AngularWebStorageModule } from 'angular-web-storage';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { HomeComponent } from './components/home/home.component';
+import { MenComponent } from './components/men/men.component';
+import { CarditemComponent } from './components/carditem/carditem.component';
+import { WomenComponent } from './components/women/women.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent
+    NavbarComponent,
+    HomeComponent,
+    MenComponent,
+    CarditemComponent,
+    WomenComponent
   ],
   imports: [
     BrowserModule,
