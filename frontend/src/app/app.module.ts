@@ -12,8 +12,10 @@ import { HomeComponent } from './components/home/home.component';
 import { MenComponent } from './components/men/men.component';
 import { CarditemComponent } from './components/carditem/carditem.component';
 import { WomenComponent } from './components/women/women.component';
+import { ProductComponent } from './components/product/product.component';
 import { ManageProductComponent } from './components/manage-product/manage-product.component';
 import { ManageCardItemListComponent } from './components/manage-product/manage-card-item-list/manage-card-item-list.component';
+
 
 @NgModule({
   declarations: [
@@ -23,6 +25,7 @@ import { ManageCardItemListComponent } from './components/manage-product/manage-
     MenComponent,
     CarditemComponent,
     WomenComponent,
+    ProductComponent,
     ManageProductComponent,
     ManageCardItemListComponent
   ],
