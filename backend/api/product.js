@@ -165,9 +165,9 @@ const getProducts = async () => {
   });
 };
 
-const insertProduct = async (dataProduct) => {
+const insertProduct = async (data) => {
   return new Promise((resolve, reject) => {
-    const new_product = new Product(dataProduct);
+    const new_product = new Product(data);
     new_product.save((err, data) => {
       if (err) {
         reject(new Error("Cannot insert Product to DB"));
@@ -178,9 +178,9 @@ const insertProduct = async (dataProduct) => {
   });
 };
 
-const deleteProduct = async (idProduct) => {
+const deleteProduct = async (id) => {
   return new Promise((resolve, reject) => {
-    Product.deleteOne({ _id: idProduct }, (err, data) => {
+    Product.deleteOne({ _id: id }, (err, data) => {
       if (err) {
         reject(new Error("Cannot Delete Product"));
       } else {
@@ -190,11 +190,11 @@ const deleteProduct = async (idProduct) => {
   });
 };
 
-const updateProduct = async (idProduct, dataProduct) => {
+const updateProduct = async (id, data) => {
   return new Promise((resolve, reject) => {
     Product.updateOne(
-      { _id: idProduct },
-      { $set: dataProduct },
+      { _id: id },
+      { $set: data },
       (err, data) => {
         if (err) {
           reject(new Error("Cannot update Product"));
