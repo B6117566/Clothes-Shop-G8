@@ -15,7 +15,8 @@ import { WomenComponent } from './components/women/women.component';
 import { ProductComponent } from './components/product/product.component';
 import { ManageProductComponent } from './components/manage-product/manage-product.component';
 import { ManageCardItemListComponent } from './components/manage-product/manage-card-item-list/manage-card-item-list.component';
-
+import { FavoriteComponent } from './components/favorite/favorite.component';
+import { FavoriteItemComponent } from './components/favorite-item/favorite-item.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,9 @@ import { ManageCardItemListComponent } from './components/manage-product/manage-
     WomenComponent,
     ProductComponent,
     ManageProductComponent,
-    ManageCardItemListComponent
+    ManageCardItemListComponent,
+    FavoriteComponent,
+    FavoriteItemComponent,
   ],
   imports: [
     BrowserModule,
