@@ -1,0 +1,49 @@
+<style>
+  .custom-fade {
+    box-shadow: 0px 0px 0px #888888;
+    transition: 0.1s;
+  }
+
+  .custom-fade:focus-within {
+    box-shadow: -6px 6px 30px #888888;
+    transition: 0.09s;
+  }
+</style>
+
+<main class="d-flex flex-column">
+  <div class="jumbotron" style="height: 0rem">
+    <div class="row justify-content-center">
+      <h1 class="display-5" style="margin-top: -30px;">การจัดการสินค้า</h1>
+    </div>
+  </div>
+
+  <div class="container fixed-top position-sticky" style="top: 6rem">
+    <div class="row justify-content-center">
+      <div
+        class="input-group mb-3 mx-5 bg-light custom-fade"
+        style="max-width: 700px"
+      >
+        <input
+          type="search"
+          class="form-control"
+          placeholder="ค้นหาสินค้าที่ต้องการแก้ไข"
+          aria-label="Search"
+          aria-describedby="button-addon2"
+        />
+        <div class="input-group-append">
+          <button
+            class="btn btn-outline-secondary"
+            type="button"
+            id="button-addon2"
+          >
+            <i class="bi bi-search" style="font-size: 16px"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container p-3">
+    <app-manage-card-item-list></app-manage-card-item-list>
+  </div>
+</main>
