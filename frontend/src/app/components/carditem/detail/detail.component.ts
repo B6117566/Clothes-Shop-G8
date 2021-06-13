@@ -8,7 +8,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class DetailComponent implements OnInit {
   @Input() productSelect: any;
-
+  
   constructor() {}
 
   ngOnInit(): void {}
