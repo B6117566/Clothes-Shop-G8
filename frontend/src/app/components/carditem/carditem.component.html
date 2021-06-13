@@ -17,8 +17,9 @@
                                 <i class="bi bi-heart-fill" style="font-size: 18px"></i>
                             </a>
                         </div>
-                        <a type="button" class="card-link" style="margin-left: 15px;" data-toggle="modal" data-target="#staticBackdrop">ดูรายละเอียดสินค้า</a>
-                        <app-detail></app-detail>
+                        <a type="button" class="card-link" style="margin-left: 15px;" data-toggle="modal"
+                            data-target="#staticBackdrop" (click)="selectProduct(i)">ดูรายละเอียดสินค้า</a>
+                        <app-detail [productSelect]="productSelect"></app-detail>
                     </div>
                 </div>
             </div>

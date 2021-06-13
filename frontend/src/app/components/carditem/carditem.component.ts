@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductsService } from 'src/app/services/products.service';
 
-
 @Component({
   selector: 'app-carditem',
   templateUrl: './carditem.component.html',
@@ -9,15 +8,16 @@ import { ProductsService } from 'src/app/services/products.service';
 })
 export class CarditemComponent implements OnInit {
   products: any;
+  productSelect: any;
+  s: any;
 
   constructor(private ps: ProductsService) {
     this.onLoading();
   }
 
-  s = true;
-
   ngOnInit(): void {
     this.s = true;
+    this.productSelect = '';
   }
 
   clickFav() {
@@ -39,5 +39,9 @@ export class CarditemComponent implements OnInit {
     } catch (error) {
       console.log(error);
     }
+  }
+
+  selectProduct(n: number) {
+    this.productSelect = this.products[n];
   }
 }
