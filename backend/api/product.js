@@ -36,7 +36,7 @@ const productSchema = Schema(
   }
 );
 
-let Product;
+let Product 
 try {
   Product = mongoose.model("Products");
 } catch (error) {
@@ -202,21 +202,7 @@ const updateProduct = async (id, data) => {
   });
 };
 
-const findProducts = async (data) => {
-  return new Promise((resolve, reject) => {
-    Product.find({ name: { $regex: data } }, (err, data) => {
-      if (err) {
-        reject(new Error("Cannot find Products"));
-      } else {
-        if (data.length != 0) {
-          resolve(data);
-        } else {
-          reject(new Error("Cannot find Products"));
-        }
-      }
-    });
-  });
-};
+
 //--------------------------------------------------------------------------
 //router.route("/products/get").get(authorization, (req, res) => {
 router.route("/products/get").get(async (req, res) => {
@@ -295,7 +281,7 @@ router.route("/products/del").delete((req, res) => {
 
 //router.route("/products/edit").put(authorization, (req, res) => {
 router.route("/products/put").put((req, res) => {
-  updateProduct(req.body[0].id, req.body[1])
+  updateProduct(req.body[0].id, mongoose.Types.ObjectId(req.body[1]))
     .then((result) => {
       res.status(201).json(result);
     })
@@ -306,6 +292,7 @@ router.route("/products/put").put((req, res) => {
 
 //router.route("/products/find").get(authorization, (req, res) => {
 router.route("/products/find").get(async (req, res) => {
+  console.log(req.body)
   try {
     findProducts(new RegExp(req.body.name))
       .then((result) => {
@@ -318,5 +305,6 @@ router.route("/products/find").get(async (req, res) => {
     res.status(400).send(String(error));
   }
 });
+
 
 module.exports = router;
