@@ -14,9 +14,9 @@ const routes: Routes = [
   { path: 'men', component: MenComponent },
   { path: 'women', component: WomenComponent },
   { path: 'manage-product', component: ManageProductComponent },
-  {path: 'product', component: ProductComponent},
-  {path: 'favorite', component: FavoriteComponent},
-  {path: 'cart', component: CartComponent},
+  { path: 'product', component: ProductComponent },
+  { path: 'favorite', component: FavoriteComponent },
+  { path: 'cart', component: CartComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];
 

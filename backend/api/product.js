@@ -192,17 +192,29 @@ const deleteProduct = async (id) => {
 
 const updateProduct = async (id, data) => {
   return new Promise((resolve, reject) => {
-    Product.updateOne(
-      { _id: id },
-      { $set: data },
-      (err, data) => {
-        if (err) {
-          reject(new Error("Cannot update Product"));
+    Product.updateOne({ _id: id }, { $set: data }, (err, data) => {
+      if (err) {
+        reject(new Error("Cannot update Product"));
+      } else {
+        resolve({ message: "Product update successfully." });
+      }
+    });
+  });
+};
+
+const findProducts = async (data) => {
+  return new Promise((resolve, reject) => {
+    Product.find({ name: { $regex: data } }, (err, data) => {
+      if (err) {
+        reject(new Error("Cannot find Products"));
+      } else {
+        if (data.length != 0) {
+          resolve(data);
         } else {
-          resolve({ message: "Product update successfully." });
+          reject(new Error("Cannot find Products"));
         }
       }
-    );
+    });
   });
 };
 //--------------------------------------------------------------------------
@@ -290,6 +302,21 @@ router.route("/products/put").put((req, res) => {
     .catch((err) => {
       res.status(400).send(String(err));
     });
+});
+
+//router.route("/products/find").get(authorization, (req, res) => {
+router.route("/products/find").get(async (req, res) => {
+  try {
+    findProducts(new RegExp(req.body.name))
+      .then((result) => {
+        res.status(200).json(result);
+      })
+      .catch((err) => {
+        res.status(400).send(String(err));
+      });
+  } catch (error) {
+    res.status(400).send(String(error));
+  }
 });
 
 module.exports = router;
