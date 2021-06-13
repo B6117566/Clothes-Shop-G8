@@ -8,12 +8,15 @@ import { ProductsService } from 'src/app/services/products.service';
 })
 export class ManageCardItemListComponent implements OnInit {
   products: any;
+  productSelect: any;
 
   constructor(private ps: ProductsService) {
     this.onLoading();
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.productSelect = '';
+  }
 
   onLoading() {
     try {
@@ -28,5 +31,9 @@ export class ManageCardItemListComponent implements OnInit {
     } catch (error) {
       console.log(error);
     }
+  }
+
+  selectProduct(id: number) {
+    this.productSelect = this.products[id];
   }
 }

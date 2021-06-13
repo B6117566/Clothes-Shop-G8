@@ -7,19 +7,18 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="container"><br>
-        <div class="d-flex justify-content-center row">
-          <div class="col-6">
-            <img
-              src="https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/433031/item/goods_29_433031.jpg?width=1600&impolicy=quality_75"
-              class="img-fluid" style="min-height: 540px; min-width: 540px;">
+      <div class="modal-body">
+        <div class="justify-content-center row-cols-lg-2 row-cols-1 row mb-2">
+          <div class="col mb-3">
+            <img [src]="productSelect.img" class="img-fluid" style="size: 75%;">
           </div>
-          <div class="col-6">
+          <div class="col">
             <div class="col bg-white border-bottom" style="min-height: 80px">
-              <h2 class="text-break font-weight-bolder">{{productSelect.name}}</h2><br>
-              <h2 class="text-break font-weight-bolder">THB 590.00</h2><br>
-              <p class="text-break font-weight-light">Oversized T-shirt with a more elevated feel. Enjoy playing with
-                the sophisticated, yet casual look.</p>
+              <h2 class="text-break font-weight-bolder">{{productSelect.name}}</h2>
+              <hr>
+              <h2 class="text-break font-weight-bolder">THB {{productSelect.price}}</h2>
+              <hr>
+              <p class="text-break font-weight-light">{{productSelect.detail}}.</p>
             </div>
             <div class="col">
               <br>
@@ -52,7 +51,7 @@
               <button type="button" class="btn btn-danger btn-lg btn-block" (click)="addCart()">เพิ่มลงในตะกร้า</button>
             </div>
           </div>
-        </div><br>
+        </div>
       </div>
     </div>
   </div>

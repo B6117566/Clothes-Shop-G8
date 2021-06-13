@@ -21,4 +21,14 @@ export class ProductsService {
       })
     );
   }
+
+  deleteProduct(id: any) {
+    return this.http
+      .delete<any>('http://localhost:3000/products/del/' + id)
+      .pipe(
+        map((data) => {
+          return data;
+        })
+      );
+  }
 }

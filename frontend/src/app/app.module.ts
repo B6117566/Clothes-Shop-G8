@@ -19,6 +19,8 @@ import { FavoriteItemComponent } from './components/favorite-item/favorite-item.
 import { CartComponent } from './components/cart/cart.component';
 import { CartItemComponent } from './components/cart-item/cart-item.component';
 import { DetailComponent } from './components/carditem/detail/detail.component';
+import { ManageCardItemEditComponent } from './components/manage-product/manage-card-item-list/manage-card-item-edit/manage-card-item-edit.component';
+import { ManageCardItemAddComponent } from './components/manage-product/manage-card-item-add/manage-card-item-add.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,8 @@ import { DetailComponent } from './components/carditem/detail/detail.component';
     CartComponent,
     CartItemComponent,
     DetailComponent,
+    ManageCardItemEditComponent,
+    ManageCardItemAddComponent,
   ],
   imports: [
     BrowserModule,

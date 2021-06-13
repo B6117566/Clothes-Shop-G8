@@ -41,7 +41,7 @@ export class CarditemComponent implements OnInit {
     }
   }
 
-  selectProduct(n: number) {
-    this.productSelect = this.products[n];
+  selectProduct(id: number) {
+    this.productSelect = this.products[id];
   }
 }
