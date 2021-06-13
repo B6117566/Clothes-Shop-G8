@@ -12,13 +12,13 @@ import { HomeComponent } from './components/home/home.component';
 import { MenComponent } from './components/men/men.component';
 import { CarditemComponent } from './components/carditem/carditem.component';
 import { WomenComponent } from './components/women/women.component';
-import { ProductComponent } from './components/product/product.component';
 import { ManageProductComponent } from './components/manage-product/manage-product.component';
 import { ManageCardItemListComponent } from './components/manage-product/manage-card-item-list/manage-card-item-list.component';
 import { FavoriteComponent } from './components/favorite/favorite.component';
 import { FavoriteItemComponent } from './components/favorite-item/favorite-item.component';
 import { CartComponent } from './components/cart/cart.component';
 import { CartItemComponent } from './components/cart-item/cart-item.component';
+import { DetailComponent } from './components/carditem/detail/detail.component';
 
 @NgModule({
   declarations: [
@@ -28,13 +28,13 @@ import { CartItemComponent } from './components/cart-item/cart-item.component';
     MenComponent,
     CarditemComponent,
     WomenComponent,
-    ProductComponent,
     ManageProductComponent,
     ManageCardItemListComponent,
     FavoriteComponent,
     FavoriteItemComponent,
     CartComponent,
     CartItemComponent,
+    DetailComponent,
   ],
   imports: [
     BrowserModule,
