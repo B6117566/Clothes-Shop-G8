@@ -7,6 +7,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./detail.component.css'],
 })
 export class DetailComponent implements OnInit {
+  
   @Input() productSelect: any;
   
   constructor() {}
