@@ -53,6 +53,7 @@ expressApp.use((req, res, next) => {
 
 //Api
 expressApp.use("/api", require("./api/product"));
+expressApp.use("/api", require("./api/favorite"));
 
 //----------------------------------------------------------------------------
 

@@ -163,7 +163,7 @@ router.route("/products/del/:id").delete((req, res) => {
 
 //router.route("/products/edit").put(authorization, (req, res) => {
 router.route("/products/put").put((req, res) => {
-  updateProduct(req.body[0].id, req.body[1])
+  updateProduct(req.body[0].id, mongoose.Types.ObjectId(req.body[1]))
     .then((result) => {
       res.status(200).json(result);
     })
