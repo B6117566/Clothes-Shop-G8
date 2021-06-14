@@ -31,6 +31,7 @@ const productSchema = Schema(
         amount: Number,
       },
     ],
+    status_favorite: false,
   },
   {
     collection: "Products",

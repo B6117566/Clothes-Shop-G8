@@ -100,18 +100,11 @@ const updateProduct = async (id, data) => {
   });
 };
 
-const pushStatus = (data) => {
-  var result = [];
-  const status = { status_favorite: false };
-};
-
 //--------------------------------------------------------------------------
 
-router.route("/products/get").get((req, res) => {
+router.route("/get").get((req, res) => {
   getProducts()
     .then((result) => {
-      const result_mod = pushStatus(result);
-
       res.status(200).json(result);
     })
     .catch((err) => {
@@ -119,7 +112,7 @@ router.route("/products/get").get((req, res) => {
     });
 });
 
-router.route("/products/get/:search").get((req, res) => {
+router.route("/get/:search").get((req, res) => {
   findProducts(new RegExp(req.params.search))
     .then((result) => {
       res.status(200).json(result);
@@ -129,7 +122,7 @@ router.route("/products/get/:search").get((req, res) => {
     });
 });
 
-router.route("/products/get/id/:ID").get((req, res) => {
+router.route("/get/id/:ID").get((req, res) => {
   findProductByID(req.params.ID)
     .then((result) => {
       res.status(200).json(result);
@@ -139,19 +132,19 @@ router.route("/products/get/id/:ID").get((req, res) => {
     });
 });
 
-//router.route("/products/add").post(authorization, (req, res) => {
-router.route("/products/add").post((req, res) => {
+//router.route("/add").post(authorization, (req, res) => {
+router.route("/add").post((req, res) => {
   insertProduct(req.body)
     .then((result) => {
       res.status(201).json(result);
     })
     .catch((err) => {
-      res.status(404).send(String(err));
+      res.status(400).send(String(err));
     });
 });
 
-//router.route("/products/del").delete(authorization, (req, res) => {
-router.route("/products/del/:id").delete((req, res) => {
+//router.route("/del").delete(authorization, (req, res) => {
+router.route("/del/:id").delete((req, res) => {
   deleteProduct(req.params.id)
     .then((result) => {
       res.status(200).json(result);
@@ -161,14 +154,14 @@ router.route("/products/del/:id").delete((req, res) => {
     });
 });
 
-//router.route("/products/edit").put(authorization, (req, res) => {
-router.route("/products/put").put((req, res) => {
-  updateProduct(req.body[0].id, mongoose.Types.ObjectId(req.body[1]))
+//router.route("/edit").put(authorization, (req, res) => {
+router.route("/put").put((req, res) => {
+  updateProduct(req.body[0].id, req.body[1])
     .then((result) => {
       res.status(200).json(result);
     })
     .catch((err) => {
-      res.status(404).send(String(err));
+      res.status(400).send(String(err));
     });
 });
 
