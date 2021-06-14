@@ -1,0 +1,29 @@
+<!-- Modal -->
+<div class="modal fade container-fluid" id="modalProductDelete" tabindex="-1" aria-labelledby="staticBackdropLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <i class="bi bi-question-lg mx-1" style="font-size: larger"></i>
+                <h5 class="modal-title" id="staticBackdropLabel">
+                    คุณแน่ใจต้องการลบข้อมูลนี้ออกจากระบบหรือไม่
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-footer justify-content-center p-4">
+                <button type="button" class="btn btn-danger rounded-pill col custom-fade"
+                    style="height: 3.5rem; font-size: large" (click)="deleteProduct()">
+                    <i class="bi bi-check-circle-fill"></i>
+                    ตกลง
+                </button>
+                <button type="button" class="btn btn-secondary rounded-pill col custom-fade"
+                    style="height: 3.5rem; font-size: large" data-dismiss="modal">
+                    <i class="bi bi-x-circle-fill"></i>
+                    ยกเลิก
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

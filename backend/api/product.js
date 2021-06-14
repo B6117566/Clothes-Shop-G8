@@ -1,151 +1,8 @@
 var expressFunction = require("express");
 const router = expressFunction.Router();
-const mongoose = require("mongoose");
 const authorization = require("../config/authorize");
 
-//-------------------------------------------------------------------------
-//Schema
-var Schema = require("mongoose").Schema;
-
-//-------------------------------------------------------------------------
-//Products
-const productSchema = Schema(
-  {
-    name: String,
-    detail: String,
-    quantity: Number,
-    price: Number,
-    file: String,
-    img: String,
-    datetime: Date,
-    Genders: {
-      id: String,
-      name: String,
-    },
-    TypeProducts: {
-      id: String,
-      name: String,
-    },
-    SizeProducts: {
-      id: String,
-      name: String,
-    },
-  },
-  {
-    collection: "Products",
-  }
-);
-
-let Product;
-try {
-  Product = mongoose.model("Products");
-} catch (error) {
-  Product = mongoose.model("Products", productSchema);
-}
-
-//-------------------------------------------------------------------------
-//Genders
-const genderSchema = Schema(
-  {
-    name: String,
-  },
-  {
-    collection: "Genders",
-  }
-);
-
-let Gender;
-try {
-  Gender = mongoose.model("Genders");
-} catch (error) {
-  Gender = mongoose.model("Genders", genderSchema);
-}
-
-//-------------------------------------------------------------------------
-//SizeProducts
-const sizeProductSchema = Schema(
-  {
-    name: String,
-  },
-  {
-    collection: "SizeProducts",
-  }
-);
-
-let SizeProduct;
-try {
-  SizeProduct = mongoose.model("SizeProducts");
-} catch (error) {
-  SizeProduct = mongoose.model("SizeProducts", sizeProductSchema);
-}
-
-//-------------------------------------------------------------------------
-//TypeProducts
-const typeProductSchema = Schema(
-  {
-    name: String,
-  },
-  {
-    collection: "TypeProducts",
-  }
-);
-
-let TypeProduct;
-try {
-  TypeProduct = mongoose.model("TypeProducts");
-} catch (error) {
-  TypeProduct = mongoose.model("TypeProducts", typeProductSchema);
-}
-
-//--------------------------------------------------------------------------
-
-const getGenders = async () => {
-  return new Promise((resolve, reject) => {
-    Gender.find({}, (err, data) => {
-      if (err) {
-        reject(new Error("Cannot get Genders"));
-      } else {
-        if (data.length != 0) {
-          resolve(data);
-        } else {
-          reject(new Error("Cannot get Genders"));
-        }
-      }
-    });
-  });
-};
-
-const getSizeProducts = async () => {
-  return new Promise((resolve, reject) => {
-    SizeProduct.find({}, (err, data) => {
-      if (err) {
-        reject(new Error("Cannot get SizeProducts"));
-      } else {
-        if (data.length != 0) {
-          resolve(data);
-        } else {
-          reject(new Error("Cannot get SizeProducts"));
-        }
-      }
-    });
-  });
-};
-
-const getTypeProducts = async () => {
-  return new Promise((resolve, reject) => {
-    TypeProduct.find({}, (err, data) => {
-      if (err) {
-        reject(new Error("Cannot get TypeProducts"));
-      } else {
-        if (data.length != 0) {
-          resolve(data);
-        } else {
-          reject(new Error("Cannot get TypeProducts"));
-        }
-      }
-    });
-  });
-};
+const Product = require("../model/product.model");
 
 //--------------------------------------------------------------------------
 
@@ -161,7 +18,48 @@ const getProducts = async () => {
           reject(new Error("Cannot get Products"));
         }
       }
-    });
+    })
+      .populate("gender_id")
+      .populate("typeproduct_id")
+      .populate("quantity.size_id");
+  });
+};
+
+const findProducts = async (data) => {
+  return new Promise((resolve, reject) => {
+    Product.find({ name: { $regex: data } }, (err, data) => {
+      if (err) {
+        reject(new Error("Cannot find Products"));
+      } else {
+        if (data.length != 0) {
+          resolve(data);
+        } else {
+          reject(new Error("Cannot find Products"));
+        }
+      }
+    })
+      .populate("gender_id")
+      .populate("typeproduct_id")
+      .populate("quantity.size_id");
+  });
+};
+
+const findProductByID = async (id) => {
+  return new Promise((resolve, reject) => {
+    Product.find({ _id: id }, (err, data) => {
+      if (err) {
+        reject(new Error("Cannot find Product By ID"));
+      } else {
+        if (data.length != 0) {
+          resolve(data);
+        } else {
+          reject(new Error("Cannot find Product By ID"));
+        }
+      }
+    })
+      .populate("gender_id")
+      .populate("typeproduct_id")
+      .populate("quantity.size_id");
   });
 };
 
@@ -202,73 +100,43 @@ const updateProduct = async (id, data) => {
   });
 };
 
-const findProducts = async (data) => {
-  return new Promise((resolve, reject) => {
-    Product.find({ name: { $regex: data } }, (err, data) => {
-      if (err) {
-        reject(new Error("Cannot find Products"));
-      } else {
-        if (data.length != 0) {
-          resolve(data);
-        } else {
-          reject(new Error("Cannot find Products"));
-        }
-      }
-    });
-  });
+const pushStatus = (data) => {
+  var result = [];
+  const status = { status_favorite: false };
 };
+
 //--------------------------------------------------------------------------
-//router.route("/products/get").get(authorization, (req, res) => {
-router.route("/products/get").get(async (req, res) => {
-  try {
-    var result_mod = await getProducts().catch((err) => {
+
+router.route("/products/get").get((req, res) => {
+  getProducts()
+    .then((result) => {
+      const result_mod = pushStatus(result);
+
+      res.status(200).json(result);
+    })
+    .catch((err) => {
       res.status(404).send(String(err));
     });
+});
 
-    await getGenders()
-      .then((result) => {
-        result.forEach((r) => {
-          result_mod.forEach((rmod) => {
-            if (r.id == rmod.Genders.id) {
-              rmod.Genders.name = r.name;
-            }
-          });
-        });
-      })
-      .catch((err) => {
-        res.status(404).send(String(err));
-      });
+router.route("/products/get/:search").get((req, res) => {
+  findProducts(new RegExp(req.params.search))
+    .then((result) => {
+      res.status(200).json(result);
+    })
+    .catch((err) => {
+      res.status(404).send(String(err));
+    });
+});
 
-    await getSizeProducts()
-      .then((result) => {
-        result.forEach((r) => {
-          result_mod.forEach((rmod) => {
-            if (r.id == rmod.SizeProducts.id) {
-              rmod.SizeProducts.name = r.name;
-            }
-          });
-        });
-      })
-      .catch((err) => {
-        res.status(404).send(String(err));
-      });
-
-    await getTypeProducts()
-      .then((result) => {
-        result.forEach((r) => {
-          result_mod.forEach((rmod) => {
-            if (r.id == rmod.TypeProducts.id) {
-              rmod.TypeProducts.name = r.name;
-            }
-          });
-        });
-      })
-      .catch((err) => {
-        res.status(404).send(String(err));
-      });
-
-    res.status(200).json(result_mod);
-  } catch (error) {}
+router.route("/products/get/id/:ID").get((req, res) => {
+  findProductByID(req.params.ID)
+    .then((result) => {
+      res.status(200).json(result);
+    })
+    .catch((err) => {
+      res.status(404).send(String(err));
+    });
 });
 
 //router.route("/products/add").post(authorization, (req, res) => {
@@ -278,15 +146,15 @@ router.route("/products/add").post((req, res) => {
       res.status(201).json(result);
     })
     .catch((err) => {
-      res.status(400).send(String(err));
+      res.status(404).send(String(err));
     });
 });
 
 //router.route("/products/del").delete(authorization, (req, res) => {
-router.route("/products/del").delete((req, res) => {
-  deleteProduct(req.body.id)
+router.route("/products/del/:id").delete((req, res) => {
+  deleteProduct(req.params.id)
     .then((result) => {
-      res.status(201).json(result);
+      res.status(200).json(result);
     })
     .catch((err) => {
       res.status(404).send(String(err));
@@ -297,26 +165,11 @@ router.route("/products/del").delete((req, res) => {
 router.route("/products/put").put((req, res) => {
   updateProduct(req.body[0].id, req.body[1])
     .then((result) => {
-      res.status(201).json(result);
+      res.status(200).json(result);
     })
     .catch((err) => {
-      res.status(400).send(String(err));
+      res.status(404).send(String(err));
     });
-});
-
-//router.route("/products/find").get(authorization, (req, res) => {
-router.route("/products/find").get(async (req, res) => {
-  try {
-    findProducts(new RegExp(req.body.name))
-      .then((result) => {
-        res.status(200).json(result);
-      })
-      .catch((err) => {
-        res.status(400).send(String(err));
-      });
-  } catch (error) {
-    res.status(400).send(String(error));
-  }
 });
 
 module.exports = router;

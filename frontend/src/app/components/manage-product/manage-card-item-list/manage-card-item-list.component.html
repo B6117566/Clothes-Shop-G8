@@ -16,36 +16,6 @@
   }
 </style>
 
-<!-- Modal -->
-<div class="modal fade container-fluid" id="staticBackdrop" tabindex="-1" aria-labelledby="staticBackdropLabel"
-  aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <i class="bi bi-question-lg mx-1" style="font-size: larger"></i>
-        <h5 class="modal-title" id="staticBackdropLabel">
-          คุณแน่ใจต้องการลบข้อมูลนี้ออกจากระบบหรือไม่
-        </h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-footer justify-content-center p-4">
-        <button type="button" class="btn btn-danger rounded-pill col custom-fade"
-          style="height: 3.5rem; font-size: large">
-          <i class="bi bi-check-circle-fill"></i>
-          ตกลง
-        </button>
-        <button type="button" class="btn btn-secondary rounded-pill col custom-fade"
-          style="height: 3.5rem; font-size: large" data-dismiss="modal">
-          <i class="bi bi-x-circle-fill"></i>
-          ยกเลิก
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
-
 <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4 justify-content-center">
   <div *ngFor="let item of products; index as i">
     <div class="col">
@@ -55,24 +25,30 @@
           class="card-img-top" alt="..." />
         <div class="card-body">
           <h5 class="card-title font-weight-bold">
-            MEN เสื้อแขนสั้น Manga Jujutsu Kaisen (Manga) UT
+            {{ item.name }}
           </h5>
           <hr />
           <h6 class="card-text">
-            <i class="bi bi-archive-fill" style="margin-right: 10px"></i>จำนวนคงเหลือ <b><u>100</u></b> ชิ้น
+            <i class="bi bi-archive-fill" style="margin-right: 10px"></i>จำนวนคงเหลือ
+            <b><u>{{ item.quantity }}</u></b>
+            ชิ้น
           </h6>
           <a href="#" class="card-link">
             <i class="bi bi-info-circle-fill" style="margin-right: 10px"></i>ดูรายละเอียดสินค้า</a>
           <hr />
           <div class="row justify-content-center pb-2">
-            <button type="button" class="btn btn-primary">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalProductSelect"
+              (click)="selectProduct(i)">
               <i class="bi bi-pencil-square" style="margin-right: 10px">‎</i>แก้ไข
             </button>
+            <app-manage-card-item-edit [productSelect]="productSelect"></app-manage-card-item-edit>
           </div>
           <div class="row justify-content-center">
-            <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#staticBackdrop">
+            <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#modalProductDelete"
+              (click)="deletSelectProduct(i)">
               <i class="bi bi-trash" style="margin-right: 10px">‎</i>ลบ
             </button>
+            <app-manage-card-item-delete [idProductSelect]="idProductSelect"></app-manage-card-item-delete>
           </div>
         </div>
         <div class="card-footer text-center text-muted bg-transparent">

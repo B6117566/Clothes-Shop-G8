@@ -21,6 +21,7 @@ import { CartItemComponent } from './components/cart-item/cart-item.component';
 import { DetailComponent } from './components/carditem/detail/detail.component';
 import { ManageCardItemEditComponent } from './components/manage-product/manage-card-item-list/manage-card-item-edit/manage-card-item-edit.component';
 import { ManageCardItemAddComponent } from './components/manage-product/manage-card-item-add/manage-card-item-add.component';
+import { ManageCardItemDeleteComponent } from './components/manage-product/manage-card-item-list/manage-card-item-delete/manage-card-item-delete.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { ManageCardItemAddComponent } from './components/manage-product/manage-c
     DetailComponent,
     ManageCardItemEditComponent,
     ManageCardItemAddComponent,
+    ManageCardItemDeleteComponent,
   ],
   imports: [
     BrowserModule,
