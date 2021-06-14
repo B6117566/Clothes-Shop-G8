@@ -197,7 +197,7 @@ const getFavorites = async () => {
     });
   };
 
-router.route("/favorites/findOne").get(async (req, res) => {
+router.route("/findOne").get(async (req, res) => {
   try {
     findOneProduct(mongoose.Types.ObjectId(req.body.product_id))
       .then((result) => {
@@ -211,7 +211,7 @@ router.route("/favorites/findOne").get(async (req, res) => {
   }
 });
 
-router.route("/favorites/user").get(async (req, res) => {
+router.route("/user").get(async (req, res) => {
   try {
     findOneUser(mongoose.Types.ObjectId(req.body.user_id))
       .then((result) => {
@@ -225,7 +225,7 @@ router.route("/favorites/user").get(async (req, res) => {
   }
 });
 
-router.route("/favorites/add").post(async (req, res) => {
+router.route("/add").post(async (req, res) => {
   try {
     const product = await findOneProduct(
       mongoose.Types.ObjectId(req.body.product_id)
@@ -255,7 +255,7 @@ router.route("/favorites/add").post(async (req, res) => {
   }
 });
 
-router.route("/favorites/get").get(async (req, res) => {
+router.route("/get").get(async (req, res) => {
     try {
         await getFavorites().then(result => {
             res.status(200).json(result)

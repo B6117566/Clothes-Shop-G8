@@ -46,14 +46,10 @@ expressApp.use((req, res, next) => {
 
 //มาใส่ที่จะติดต่อเอาข้อมูลตรงนี้ 
 //Endpoint
-
-
-//expressApp.use("/user", require("./routes/user"));
-//expressApp.use("/login", require("./routes/signin"));
-
 //Api
-expressApp.use("/api", require("./api/product"));
-expressApp.use("/api", require("./api/favorite"));
+expressApp.use("/api/products", require("./api/product"));
+expressApp.use("/api/favorites", require("./api/favorite"));
+expressApp.use("/api/users", require("./api/user"));
 
 //----------------------------------------------------------------------------
 

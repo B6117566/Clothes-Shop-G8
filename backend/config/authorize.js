@@ -18,7 +18,6 @@ const authorization = (req, res, next) => {
           message: "Unauthorized",
         });
       } else {
-        console.log(decode);
         next();
       }
     });
