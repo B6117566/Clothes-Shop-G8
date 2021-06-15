@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductsService } from 'src/app/services/products.service';
+import { FavoritesService } from 'src/app/services/favorites.service';
 
 @Component({
   selector: 'app-carditem',
@@ -9,21 +10,20 @@ import { ProductsService } from 'src/app/services/products.service';
 export class CarditemComponent implements OnInit {
   products: any;
   productSelect: any;
+  product_id: any;
+  user_id: any;
+  favorite: any;
+  favorites: any;
   s: any;
+  statusCheck: any
 
-  constructor(private ps: ProductsService) {
+  constructor(private ps: ProductsService, private fr: FavoritesService) {
     this.onLoading();
   }
 
   ngOnInit(): void {
-    this.s = true;
+    this.s = false;
     this.productSelect = '';
-  }
-
-  clickFav() {
-    this.s = !this.s;
-    console.log(this.s);
-    return this.s;
   }
 
   onLoading() {
@@ -36,12 +36,41 @@ export class CarditemComponent implements OnInit {
           console.log(err);
         }
       );
+      this.fr.getFavorites().subscribe(
+        (data) => {
+          this.favorites = data;
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
+
     } catch (error) {
       console.log(error);
     }
   }
 
   selectProduct(id: number) {
-    this.productSelect = this.products[id];
+    this.product_id = this.products[id];
   }
+
+  addFavorite(id: number) {
+    this.product_id = this.products[id]._id;
+    this.user_id = '60c609baae3f5fae0699efdc';
+    this.favorite = {
+      product_id: this.product_id,
+      user_id: this.user_id,
+    };
+    this.fr.addFavorite(this.favorite).subscribe(
+      (data) => {
+        console.log(data);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+    this.onLoading()
+  }
+
+  delFavorite(id: number) {}
 }

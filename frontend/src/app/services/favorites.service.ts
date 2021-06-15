@@ -22,4 +22,12 @@ export class FavoritesService {
       })
     );
   }
+
+  addFavorite(favorite){
+    return this.http.post<any>('http://localhost:3000/api/favorites/add', favorite).pipe(
+      map((data) => {
+        return data
+      })
+    )
+  }
 }

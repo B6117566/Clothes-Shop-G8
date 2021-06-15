@@ -1,0 +1,64 @@
+<div class="container" style="margin-top: 130px;">
+    <h2 class="text-break font-weight-bolder">สร้างบัญชีผู้ใช้ใหม่</h2><br>
+    <div class="card">
+        <div class="card-body">
+            <form [formGroup]="signupForm">
+                <div class="row">
+                    <div class="col-6">
+                        <h6 class="font-weight-normal">อีเมล</h6>
+                        <input type="email" class="form-control" formControlName="email"><br>
+                    </div>
+                    <div class="col-6">
+                        <h6 class="font-weight-normal">รหัสผ่าน</h6>
+                        <input type="password" class="form-control" formControlName="password"><br>
+                    </div>
+                    <div class="col-6">
+                        <h6 class="font-weight-normal">ชื่อ</h6>
+                        <input type="text" class="form-control" formControlName="firstname">
+                    </div>
+                    <div class="col-6">
+                        <h6 class="font-weight-normal">นามสกุล</h6>
+                        <input type="password" class="form-control" formControlName="lastname"><br>
+                    </div>
+                    <div class="col-6">
+                        <h6 class="font-weight-normal">โทรศัพท์</h6>
+                        <input type="text" class="form-control" formControlName="phone">
+                    </div>
+                    <div class="col-6"></div>
+                    <div class="col-12">
+                        <br><hr>
+                        <h4 class="font-weight-bolder">ที่อยู่</h4>
+                    </div>
+                    <div class="row p-3" formGroupName="addressForm">
+                        <div class="col-6">
+                            <h6 class="font-weight-normal">บ้านเลขที่</h6>
+                            <input type="text" class="form-control" formControlName="address"><br>
+                        </div>
+                        <div class="col-6">
+                            <h6 class="font-weight-normal">จังหวัด</h6>
+                            <input type="text" class="form-control" formControlName="province">
+                        </div>
+                        <div class="col-6">
+                            <h6 class="font-weight-normal">อําเภอ</h6>
+                            <input type="text" class="form-control" formControlName="district"><br>
+                        </div>
+                        <div class="col-6">
+                            <h6 class="font-weight-normal">ตําบล</h6>
+                            <input type="text" class="form-control" formControlName="subdistrict">
+                        </div>
+                        <div class="col-6">
+                            <h6 class="font-weight-normal">รหัสไปรษณีย์</h6>
+                            <input type="text" class="form-control"  formControlName="zipcode">
+                        </div>
+                        <div class="col-6"></div>
+                    </div>
+                    
+                    <div class="col-6">
+                        <br>
+                        <button type="submit" class="btn btn-dark w-100" (click)="onClick()">ลงทะเบียน</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
