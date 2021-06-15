@@ -4,7 +4,8 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 //--------------------------------------------------------------------------
 const User = require("../model/user.model");
-const key = "MY_KEY"; //อันนี้แล้วแต่จะตั้ง
+const authorization = require("../config/authorize");
+const key = "MY_KEY"; //อันนี้แล้วแต่จะตั้ง ต้องเหมือนกันใน authorize ด้วย
 //--------------------------------------------------------------------------
 
 const makeHash = async (plainText) => {
@@ -43,7 +44,7 @@ const findUser = async (email) => {
       if (err) {
         reject(new Error("Cannot find Email"));
       } else {
-        if (data.length != 0) {
+        if (data) {
           resolve({
             id: data.id,
             email: data.email,
@@ -66,8 +67,6 @@ router.route("/signup").post((req, res) => {
       var payload = new User(req.body);
       payload.password = hashText;
 
-      console.log(payload);
-
       insertUser(payload)
         .then((result) => {
           res.status(201).json(result);
@@ -85,16 +84,23 @@ router.route("/signin").post(async (req, res) => {
     password: req.body.password,
   };
 
-  console.log(payload);
-
   try {
-    const result = await findUser(payload.email);
-    const loginStatus = await compareHash(payload.password, result.password);
+    const result_data = await findUser(payload.email);
+    const loginStatus = await compareHash(
+      payload.password,
+      result_data.password
+    );
 
     const status = loginStatus.status;
 
     if (status) {
-      const token = jwt.sign(result, key, { expiresIn: 60 * 30 });
+      const token = jwt.sign(result_data, key, { expiresIn: 60 * 20 });
+
+      const result = {
+        id: result_data.id,
+        usertype: result_data.usertype_id.name,
+      };
+
       res.status(200).json({ result, token, status });
     } else {
       res.status(404).json({ status });
@@ -112,7 +118,7 @@ const findUserByID = async (id) => {
       if (err) {
         reject(new Error("Cannot find User By ID"));
       } else {
-        if (data.length != 0) {
+        if (data) {
           resolve(data);
         } else {
           reject(new Error("Cannot find User By ID"));
@@ -126,6 +132,9 @@ const findUserByID = async (id) => {
 
 const updateUser = async (id, data) => {
   return new Promise((resolve, reject) => {
+    if (id == undefined) {
+      reject(new Error("Cannot update User"));
+    }
     User.updateOne({ _id: id }, { $set: data }, (err, data) => {
       if (err) {
         reject(new Error("Cannot update User"));
@@ -151,6 +160,7 @@ router.route("/get/id/:ID").get((req, res) => {
 
 //router.route("/put").put(authorization, (req, res) => {
 router.route("/put").put((req, res) => {
+  //----req[0] ID, req[1] ช้อมูล
   updateUser(req.body[0].id, req.body[1])
     .then((result) => {
       res.status(200).json(result);

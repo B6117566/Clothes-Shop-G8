@@ -27,7 +27,7 @@ const findPostcodeByID = async (id) => {
       if (err) {
         reject(new Error("Cannot find Postcode By ID"));
       } else {
-        if (data.length != 0) {
+        if (data) {
           resolve(data);
         } else {
           reject(new Error("Cannot find Postcode By ID"));

@@ -27,6 +27,7 @@ expressApp.use("/api/usertypes", require("./api/usertype"));
 expressApp.use("/api/users", require("./api/user"));
 expressApp.use("/api/products", require("./api/product"));
 expressApp.use("/api/postcodes", require("./api/postcode"));
+expressApp.use("/api/genders", require("./api/gender"));
 expressApp.use("/api/favorites", require("./api/favorite"));
 
 //----------------------------------------------------------------------------

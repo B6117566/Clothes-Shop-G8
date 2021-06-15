@@ -50,7 +50,7 @@ const findProductByID = async (id) => {
       if (err) {
         reject(new Error("Cannot find Product By ID"));
       } else {
-        if (data.length != 0) {
+        if (data) {
           resolve(data);
         } else {
           reject(new Error("Cannot find Product By ID"));
@@ -90,6 +90,9 @@ const deleteProduct = async (id) => {
 
 const updateProduct = async (id, data) => {
   return new Promise((resolve, reject) => {
+    if (id == undefined) {
+      reject(new Error("Cannot update Product"));
+    }
     Product.updateOne({ _id: id }, { $set: data }, (err, data) => {
       if (err) {
         reject(new Error("Cannot update Product"));
