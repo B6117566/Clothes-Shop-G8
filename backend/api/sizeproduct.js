@@ -1,21 +1,20 @@
 var expressFunction = require("express");
 const router = expressFunction.Router();
 
-const authorization = require("../config/authorize");
-const UserType = require("../model/usertype.model");
+const SizeProduct = require("../model/sizeproduct.model");
 
 //--------------------------------------------------------------------------
 
-const findUserTypes = async (data) => {
+const getSizeProducts = async () => {
   return new Promise((resolve, reject) => {
-    UserType.find({ name: { $regex: data } }, (err, data) => {
+    SizeProduct.find({}, (err, data) => {
       if (err) {
-        reject(new Error("Cannot find UserTypes"));
+        reject(new Error("Cannot get SizeProducts"));
       } else {
         if (data.length != 0) {
           resolve(data);
         } else {
-          reject(new Error("Cannot find UserTypes"));
+          reject(new Error("Cannot get SizeProducts"));
         }
       }
     });
@@ -24,9 +23,8 @@ const findUserTypes = async (data) => {
 
 //--------------------------------------------------------------------------
 
-//router.route("/get/:search").get(authorization, (req, res) => {
-router.route("/get/:search").get((req, res) => {
-  findUserTypes(new RegExp(req.params.search))
+router.route("/get").get((req, res) => {
+  getSizeProducts()
     .then((result) => {
       res.status(200).json(result);
     })

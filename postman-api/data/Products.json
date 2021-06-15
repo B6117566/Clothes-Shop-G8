@@ -1,0 +1,118 @@
+[{
+  "_id": {
+    "$oid": "60c871276fbe67f97252521f"
+  },
+  "name": "WOMEN UNIQLO U เสื้อ คอกลม ทรงหลวม",
+  "detail": "Oversized T-shirt with a more elevated feel. Enjoy playing with the sophisticated, yet casual look.",
+  "price": 590,
+  "file": "idont no 55555",
+  "img": "",
+  "datetime": {
+    "$date": "2563-01-01T00:00:00Z"
+  },
+  "quantity": [
+    {
+      "_id": {
+        "$oid": "60c86674f2f15639787a1aa0"
+      },
+      "amount": 5,
+      "size_id": {
+        "$oid": "60c4d9f0019e44e84dbbc821"
+      }
+    },
+    {
+      "_id": {
+        "$oid": "60c86674f2f15639787a1aa1"
+      },
+      "amount": 56,
+      "size_id": {
+        "$oid": "60c4da08019e44e84dbbc823"
+      }
+    }
+  ],
+  "gender_id": {
+    "$oid": "60c4d979019e44e84dbbc81d"
+  },
+  "typeproduct_id": {
+    "$oid": "60c4da71019e44e84dbbc825"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "60c8714b6467b60d24f48b20"
+  },
+  "name": "MEN UNIQLO U เสื้อ คอกลม ทรงหลวม",
+  "detail": "Oversized T-shirt with a more elevated feel. Enjoy playing with the sophisticated, yet casual look.",
+  "price": 9999,
+  "file": "idont no 123456",
+  "img": "",
+  "datetime": {
+    "$date": "2563-01-01T00:00:00Z"
+  },
+  "quantity": [
+    {
+      "_id": {
+        "$oid": "60c86674f2f15639787a1aa0"
+      },
+      "amount": 5,
+      "size_id": {
+        "$oid": "60c4d9f0019e44e84dbbc821"
+      }
+    },
+    {
+      "_id": {
+        "$oid": "60c86674f2f15639787a1aa1"
+      },
+      "amount": 56,
+      "size_id": {
+        "$oid": "60c4da08019e44e84dbbc823"
+      }
+    }
+  ],
+  "gender_id": {
+    "$oid": "60c4d956019e44e84dbbc81c"
+  },
+  "typeproduct_id": {
+    "$oid": "60c4da71019e44e84dbbc825"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "60c8714d6467b60d24f48b21"
+  },
+  "name": "WOMEN UNIQLO U เสื้อ คอกลม ทรงหลวม",
+  "detail": "Oversized T-shirt with a more elevated feel. Enjoy playing with the sophisticated, yet casual look.",
+  "price": 1098,
+  "file": "99",
+  "img": "",
+  "datetime": {
+    "$date": "2563-01-01T00:00:00Z"
+  },
+  "quantity": [
+    {
+      "_id": {
+        "$oid": "60c86674f2f15639787a1aa0"
+      },
+      "amount": 5,
+      "size_id": {
+        "$oid": "60c4d9f0019e44e84dbbc821"
+      }
+    },
+    {
+      "_id": {
+        "$oid": "60c86674f2f15639787a1aa1"
+      },
+      "amount": 56,
+      "size_id": {
+        "$oid": "60c4da08019e44e84dbbc823"
+      }
+    }
+  ],
+  "gender_id": {
+    "$oid": "60c4d979019e44e84dbbc81d"
+  },
+  "typeproduct_id": {
+    "$oid": "60c4da71019e44e84dbbc825"
+  },
+  "__v": 0
+}]

@@ -3,9 +3,9 @@ const router = expressFunction.Router();
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 //--------------------------------------------------------------------------
-const User = require("../model/user.model");
 const authorization = require("../config/authorize");
 const key = "MY_KEY"; //อันนี้แล้วแต่จะตั้ง ต้องเหมือนกันใน authorize ด้วย
+const User = require("../model/user.model");
 //--------------------------------------------------------------------------
 
 const makeHash = async (plainText) => {

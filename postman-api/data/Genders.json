@@ -1,0 +1,11 @@
+[{
+  "_id": {
+    "$oid": "60c4d956019e44e84dbbc81c"
+  },
+  "name": "Men"
+},{
+  "_id": {
+    "$oid": "60c4d979019e44e84dbbc81d"
+  },
+  "name": "Women"
+}]
