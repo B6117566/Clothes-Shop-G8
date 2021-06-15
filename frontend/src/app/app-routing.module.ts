@@ -7,6 +7,8 @@ import { MenComponent } from './components/men/men.component';
 import { WomenComponent } from './components/women/women.component';
 import { FavoriteComponent } from './components/favorite/favorite.component';
 import { CartComponent } from './components/cart/cart.component';
+import { LoginComponent } from './components/login/login.component';
+import { SingnupComponent } from './components/singnup/singnup.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -15,6 +17,8 @@ const routes: Routes = [
   { path: 'manage-product', component: ManageProductComponent },
   { path: 'favorite', component: FavoriteComponent },
   { path: 'cart', component: CartComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'signup', component: SingnupComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];
 
