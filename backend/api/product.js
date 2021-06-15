@@ -46,7 +46,7 @@ const findProducts = async (data) => {
 
 const findProductByID = async (id) => {
   return new Promise((resolve, reject) => {
-    Product.find({ _id: id }, (err, data) => {
+    Product.findOne({ _id: id }, (err, data) => {
       if (err) {
         reject(new Error("Cannot find Product By ID"));
       } else {
@@ -156,6 +156,7 @@ router.route("/del/:id").delete((req, res) => {
 
 //router.route("/edit").put(authorization, (req, res) => {
 router.route("/put").put((req, res) => {
+  //----req[0] ID, req[1] ช้อมูล
   updateProduct(req.body[0].id, req.body[1])
     .then((result) => {
       res.status(200).json(result);

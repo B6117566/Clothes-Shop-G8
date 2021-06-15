@@ -1,14 +1,6 @@
 const expressFunction = require("express");
-const mongoose = require("mongoose");
 var expressApp = expressFunction();
-
-const url = "mongodb://localhost:27017/Clothes";
-const config = {
-  autoIndex: true,
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-};
-
+const database = require("../backend/config/database");
 //--------------------------------------------------------------------------
 
 //middleware 1
@@ -26,31 +18,16 @@ expressApp.use((req, res, next) => {
 });
 
 //middleware 2
-expressApp.use(expressFunction.json());
-
-//middleware 3
-expressApp.use((req, res, next) => {
-  mongoose
-    .connect(url, config)
-    .then(() => {
-      console.log("Connected to MongoDB....");
-      next();
-    })
-    .catch(() => {
-      console.log("Cannot connect to MongoDB !!!");
-      res.status(501).send("Cannot connect to MongoDB !!!");
-    });
-});
+expressApp.use(expressFunction.json(), database);
 
 //----------------------------------------------------------------------------
 
-//มาใส่ที่จะติดต่อเอาข้อมูลตรงนี้ 
+//มาใส่ที่จะติดต่อเอาข้อมูลตรงนี้
 //Endpoint
 //Api
+expressApp.use("/api/users", require("./api/user"));
 expressApp.use("/api/products", require("./api/product"));
 expressApp.use("/api/favorites", require("./api/favorite"));
-expressApp.use("/api/users", require("./api/user"));
-
 //----------------------------------------------------------------------------
 
 //Running Server

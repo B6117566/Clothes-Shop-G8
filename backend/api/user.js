@@ -43,7 +43,7 @@ const findUser = async (email) => {
       if (err) {
         reject(new Error("Cannot find Email"));
       } else {
-        if (data) {
+        if (data.length != 0) {
           resolve({
             id: data.id,
             email: data.email,
@@ -108,7 +108,7 @@ router.route("/signin").post(async (req, res) => {
 
 const findUserByID = async (id) => {
   return new Promise((resolve, reject) => {
-    User.find({ _id: id }, (err, data) => {
+    User.findOne({ _id: id }, (err, data) => {
       if (err) {
         reject(new Error("Cannot find User By ID"));
       } else {
