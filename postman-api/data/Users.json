@@ -1,0 +1,18 @@
+[{
+  "_id": {
+    "$oid": "60c8a18b34edae473c637048"
+  },
+  "email": "b@b.com",
+  "password": "$2a$10$kM0XQVGbndxyFLW3OeV07.e34BTNooomqoZ5tCNPX6FRl31L5EZyK",
+  "firstname": "doon",
+  "lastname": "ben",
+  "phone": "0987654321",
+  "address": "มทส 111",
+  "postcode_id": {
+    "$oid": "60c7265d9b0ee5422cc2ca2a"
+  },
+  "usertype_id": {
+    "$oid": "60c721a0de2dbb5c06d3acf8"
+  },
+  "__v": 0
+}]

@@ -1,0 +1,482 @@
+{
+	"info": {
+		"_postman_id": "1c541059-b634-40b1-b264-a4c49af12907",
+		"name": "Clothes",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "product",
+			"item": [
+				{
+					"name": "get product all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/products/get",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"products",
+								"get"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "search product",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/products/get/WOMEN",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"products",
+								"get",
+								"WOMEN"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get product by ID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"name\": \"M\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/products/get/id/60c66ad69b0ee5422cc2c46f",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"products",
+								"get",
+								"id",
+								"60c66ad69b0ee5422cc2c46f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add product",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"MEN5 UNIQLO U เสื้อ คอกลม ทรงหลวม (Unisex)\",\r\n    \"detail\": \"Oversized T-shirt with a more elevated feel. Enjoy playing with the sophisticated, yet casual look.\",\r\n    \"price\": 590,\r\n    \"file\": \"filex\",\r\n    \"img\": \"\",\r\n    \"datetime\": \"2563-01-01T00:00:00.000Z\",\r\n    \"quantity\": [\r\n        {\r\n            \"amount\": 10,\r\n            \"size_id\": {\r\n                \"_id\": \"60c4da13019e44e84dbbc824\"\r\n            }\r\n        }\r\n    ],\r\n    \"gender_id\": {\r\n        \"_id\": \"60c4d956019e44e84dbbc81c\"\r\n    },\r\n    \"typeproduct_id\": {\r\n        \"_id\": \"60c4daa1019e44e84dbbc826\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/products/add",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"products",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete product by ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/products/del/60c86584f2f15639787a1a9c",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"products",
+								"del",
+								"60c86584f2f15639787a1a9c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update product 1.ID 2.DATA",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[{\r\n    \"id\": \"60c8714d6467b60d24f48b21\"\r\n}\r\n,\r\n{\r\n    \"gender_id\": \"60c4d956019e44e84dbbc81c\"\r\n}]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/products/put",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"products",
+								"put"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "sizeproduct",
+			"item": [
+				{
+					"name": "get sizeproduct all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/sizeproducts/get",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"sizeproducts",
+								"get"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "typeproduct",
+			"item": [
+				{
+					"name": "get typeproduct all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/typeproducts/get",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"typeproducts",
+								"get"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "gender",
+			"item": [
+				{
+					"name": "get all product USE gender",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/genders/get/all/Men",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"genders",
+								"get",
+								"all",
+								"Men"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "search product USE  gender + want to search",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/genders/get/Women/เสื้อ",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"genders",
+								"get",
+								"Women",
+								"เสื้อ"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "signup Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"b@b.com\",\r\n    \"password\": \"1234\",\r\n    \"firstname\": \"doon\",\r\n    \"lastname\": \"ben\",\r\n    \"phone\": \"0987654321\",\r\n    \"address\": \"มทส 111\",\r\n    \"postcode_id\": {\r\n        \"_id\": \"60c7265d9b0ee5422cc2ca2a\"\r\n    },\r\n    \"usertype_id\": {\r\n        \"_id\": \"60c721a0de2dbb5c06d3acf8\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/users/signup",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "signin Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"b@b.com\",\r\n    \"password\": \"1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/users/signin",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"signin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get user by ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwYzhhMThiMzRlZGFlNDczYzYzNzA0OCIsImVtYWlsIjoiYkBiLmNvbSIsInBhc3N3b3JkIjoiJDJhJDEwJGtNMFhRVkdibmR4eUZMVzNPZVYwNy5lMzRCVE5vb29tcW9aNXRDTlBYNkZSbDMxTDVFWnlLIiwidXNlcnR5cGVfaWQiOnsiX2lkIjoiNjBjNzIxYTBkZTJkYmI1YzA2ZDNhY2Y4IiwibmFtZSI6ImN1c3RvbWVyIn0sImlhdCI6MTYyMzc3NDIzOSwiZXhwIjoxNjIzNzc2MDM5fQ.RBZH3LIf3ghGyk-a7IMplYWxMcXgsjpgpmWxLoGUnsA",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "localhost:3000/api/users/get/id/60c8a18b34edae473c637048",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"get",
+								"id",
+								"60c8a18b34edae473c637048"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update user 1.ID 2.DATA",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n       \"id\": \"60c8eaa66467b60d24f48b22\"\r\n    },\r\n    {\r\n        \"lastname\": \"TEST dd5\"\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/users/put",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"put"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "usertype",
+			"item": [
+				{
+					"name": "get id usertype USE search",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/usertypes/get/Customer",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"usertypes",
+								"get",
+								"Customer"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "postcode",
+			"item": [
+				{
+					"name": "get postcode all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/postcodes/get",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"postcodes",
+								"get"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get postcode by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/postcodes/get/id/60c7265d9b0ee5422cc2ca2a",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"postcodes",
+								"get",
+								"id",
+								"60c7265d9b0ee5422cc2ca2a"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
