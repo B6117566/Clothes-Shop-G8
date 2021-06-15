@@ -1,6 +1,5 @@
 var expressFunction = require("express");
 const router = expressFunction.Router();
-const authorization = require("../config/authorize");
 
 const Gender = require("../model/gender.model");
 const Product = require("../model/product.model");

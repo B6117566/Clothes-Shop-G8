@@ -477,6 +477,92 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "favorite",
+			"item": [
+				{
+					"name": "get all favorite by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/favorites/get/id/60c8a18b34edae473c637048",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"favorites",
+								"get",
+								"id",
+								"60c8a18b34edae473c637048"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add favorite",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user_id\": \"60c8a18b34edae473c637048\",\r\n    \"product_id\": \"60c8714b6467b60d24f48b20\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/favorites/add",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"favorites",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete favorite by ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/favorites/del/60c913304700254eac8d5667",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"favorites",
+								"del",
+								"60c913304700254eac8d5667"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }

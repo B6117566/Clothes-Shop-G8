@@ -1,6 +1,7 @@
 var expressFunction = require("express");
 const router = expressFunction.Router();
 
+const authorization = require("../config/authorize");
 const UserType = require("../model/usertype.model");
 
 //--------------------------------------------------------------------------
