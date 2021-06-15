@@ -21,13 +21,15 @@ expressApp.use((req, res, next) => {
 expressApp.use(expressFunction.json(), database);
 
 //----------------------------------------------------------------------------
-
 //มาใส่ที่จะติดต่อเอาข้อมูลตรงนี้
-//Endpoint
-//Api
+//Endpoint (API)
+expressApp.use("/api/usertypes", require("./api/usertype"));
 expressApp.use("/api/users", require("./api/user"));
 expressApp.use("/api/products", require("./api/product"));
+expressApp.use("/api/postcodes", require("./api/postcode"));
+expressApp.use("/api/genders", require("./api/gender"));
 expressApp.use("/api/favorites", require("./api/favorite"));
+
 //----------------------------------------------------------------------------
 
 //Running Server
