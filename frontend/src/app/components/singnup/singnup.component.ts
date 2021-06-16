@@ -9,6 +9,8 @@ import { UsersService } from 'src/app/services/users.service';
   styleUrls: ['./singnup.component.css'],
 })
 export class SingnupComponent implements OnInit {
+  usertype_id: any;
+
   constructor(private signup: UsersService, private router: Router) {}
 
   signupForm = new FormGroup({
@@ -24,7 +26,7 @@ export class SingnupComponent implements OnInit {
       Validators.pattern('[0-9]{8,12}'),
     ]),
     address: new FormControl('', [Validators.required]),
-    usertype_id: new FormControl(''),
+    usertype_id: new FormControl(),
   });
 
   ngOnInit(): void {
@@ -34,7 +36,7 @@ export class SingnupComponent implements OnInit {
   checkUsertype() {
     this.signup.getUsertype('Customer').subscribe(
       (data) => {
-        this.signupForm.value.usertype_id = data[0]._id;
+        this.usertype_id = data[0]._id;
       },
       (err) => {
         console.log(err);
@@ -44,6 +46,7 @@ export class SingnupComponent implements OnInit {
 
   signupRegister() {
     console.log(this.signupForm.value);
+    this.signupForm.value.usertype_id = this.usertype_id;
     this.signup.signUp(this.signupForm.value).subscribe(
       (data) => {
         if (data.message) {
