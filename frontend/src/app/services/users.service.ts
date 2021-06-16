@@ -39,7 +39,7 @@ export class UsersService {
   updateUserData(data: any) {
     let token = this.local.get('user').token;
     let user_id = this.local.get('user').result.id;
-    let body_send = ([
+    const body_send = [
       { id: user_id },
       {
         firstname: data.firstname,
@@ -47,13 +47,17 @@ export class UsersService {
         phone: data.phone,
         address: data.address,
       },
-    ]);
+    ];
     return this.http.put<any>(
       'http://localhost:3000/api/users/put',
       body_send,
       {
         headers: new HttpHeaders().set('Authorization', token),
       }
+    ).pipe(
+      map((data) => {
+        return data;
+      })
     );
   }
 
@@ -61,6 +65,10 @@ export class UsersService {
     return this.http.post<any>(
       'http://localhost:3000/api/users/signup',
       signupData
+    ).pipe(
+      map((data) => {
+        return data;
+      })
     );
   }
 

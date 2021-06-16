@@ -50,14 +50,15 @@ export class SingnupComponent implements OnInit {
     this.signup.signUp(this.signupForm.value).subscribe(
       (data) => {
         if (data.message) {
+          alert(data.message)
           this.router.navigate(['/login']);
         } else {
-          alert('Cannot Sign up');
+          alert('Cannot Signup.');
         }
       },
       (err) => {
         console.log(err);
-        alert('Cannot Sign up');
+        alert('Cannot Signup.');
       }
     );
   }
