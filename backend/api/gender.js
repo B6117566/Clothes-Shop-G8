@@ -3,7 +3,7 @@ const router = expressFunction.Router();
 
 const Gender = require("../model/gender.model");
 const Product = require("../model/product.model");
-
+const Favorite = require("../model/favorite.model");
 //--------------------------------------------------------------------------
 
 const findGenders = async (data) => {
@@ -60,6 +60,22 @@ const findProductAsGender = async (id, data) => {
   });
 };
 
+const getFavoritesByID = async (id) => {
+  return new Promise((resolve, reject) => {
+    Favorite.find({ user_id: id }, (err, data) => {
+      if (err) {
+        reject(new Error("Cannot get Favorites"));
+      } else {
+        if (data.length != 0) {
+          resolve(data);
+        } else {
+          reject(new Error("Cannot get Favorites"));
+        }
+      }
+    });
+  });
+};
+
 //--------------------------------------------------------------------------
 //ส่งคำว่า Men หรือ Women เข้ามาหลัง all/
 router.route("/get/all/:gender").get((req, res) => {
@@ -85,6 +101,67 @@ router.route("/get/:gender/:search").get((req, res) => {
       findProductAsGender(result.id, new RegExp(req.params.search))
         .then((result) => {
           res.status(200).json(result);
+        })
+        .catch((err) => {
+          res.status(404).send(String(err));
+        });
+    })
+    .catch((err) => {
+      res.status(404).send(String(err));
+    });
+});
+
+//----------------------------------------------------------------------------
+//ใช้ตอนที่ Login แล้ว
+router.route("/get/all/:gender/:ID").get((req, res) => {
+  findGenders(new RegExp(req.params.gender))
+    .then((resultGender) => {
+      getProductAsGender(resultGender.id)
+        .then((resultProduct) => {
+          getFavoritesByID(req.params.ID)
+            .then((resultFavorite) => {
+              resultProduct.forEach((rpro) => {
+                resultFavorite.forEach((rfa) => {
+                  if (rpro.id == rfa.product_id) {
+                    rpro.status_favorite = true;
+                  }
+                });
+              });
+              res.status(200).json(resultProduct);
+            })
+            .catch((err) => {
+              res.status(404).send(String(err));
+            });
+        })
+        .catch((err) => {
+          res.status(404).send(String(err));
+        });
+    })
+    .catch((err) => {
+      res.status(404).send(String(err));
+    });
+});
+
+//ส่งคำว่า Men หรือ Women เข้ามาหลัง get/ แล้วต่อไปเป็นคำค้นหา /ID USER
+router.route("/get/:gender/:search/:ID").get((req, res) => {
+  findGenders(new RegExp(req.params.gender))
+    .then((resultGender) => {
+      findProductAsGender(resultGender.id, new RegExp(req.params.search))
+        .then((resultProduct) => {
+          getFavoritesByID(req.params.ID)
+            .then((resultFavorite) => {
+              resultProduct.forEach((rpro) => {
+                resultFavorite.forEach((rfa) => {
+                  if (rpro.id == rfa.product_id) {
+                    rpro.status_favorite = true;
+                  }
+                });
+              });
+              res.status(200).json(resultProduct);
+            })
+            .catch((err) => {
+              res.status(404).send(String(err));
+            });
         })
         .catch((err) => {
           res.status(404).send(String(err));

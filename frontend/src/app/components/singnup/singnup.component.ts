@@ -4,32 +4,44 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-singnup',
   templateUrl: './singnup.component.html',
-  styleUrls: ['./singnup.component.css']
+  styleUrls: ['./singnup.component.css'],
 })
 export class SingnupComponent implements OnInit {
-
   signupForm = new FormGroup({
-    email: new FormControl(''),
-    password: new FormControl(''),
-    firstname: new FormControl(''),
-    lastname: new FormControl(''),
-    phone: new  FormControl(''),
-    addressForm : new FormGroup({
-      address: new FormControl(''),
-      province: new FormControl(''),
-      district: new FormControl(''),
-      subdistrict: new FormControl(''),
-      zipcode: new FormControl(''),
-    }),
-  })
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', [
+      Validators.required,
+      Validators.pattern('[^`~!@#$%^&*_;?<>]{8,16}'),
+    ]),
+    firstname: new FormControl('', [
+      Validators.required,
+      Validators.pattern('\a'),
+    ]),
+    lastname: new FormControl('', [
+      Validators.required,
+      Validators.pattern('\a'),
+    ]),
+    phone: new FormControl('', [
+      Validators.required,
+      Validators.pattern('\d{8,12}'),
+    ]),
+    address: new FormControl('', [Validators.required]),
+    postcode_id: new FormControl('', [Validators.required]),
+    usertype_id: new FormControl('', [Validators.required]),
+  });
 
-  constructor() { }
+  postcode = new FormGroup({
+    province: new FormControl('', [Validators.required]),
+    district: new FormControl('', [Validators.required]),
+    subdistrict: new FormControl('', [Validators.required]),
+    zipcode: new FormControl('', [Validators.required]),
+  });
 
-  ngOnInit(): void {
+  constructor() {}
+
+  ngOnInit(): void {}
+
+  onClick() {
+    console.log(this.signupForm.value);
   }
-
-  onClick(){
-    console.log(this.signupForm.value)
-  }
-
 }
