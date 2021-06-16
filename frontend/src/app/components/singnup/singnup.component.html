@@ -7,22 +7,62 @@
                     <div class="col-6">
                         <h6 class="font-weight-normal">อีเมล</h6>
                         <input type="email" class="form-control" formControlName="email"><br>
+                        <div
+                            *ngIf="signupFormMethod.email.invalid && (signupFormMethod.email.dirty || signupFormMethod.email.touched)">
+                            <div *ngIf="signupFormMethod.email.errors.required" class="alert alert-danger">
+                                Email is required.
+                            </div>
+                            <div *ngIf="signupFormMethod.email.errors.email" class="alert alert-danger">
+                                Your email is incorrect!!
+                            </div>
+                        </div>
+
                     </div>
                     <div class="col-6">
                         <h6 class="font-weight-normal">รหัสผ่าน</h6>
                         <input type="password" class="form-control" formControlName="password"><br>
+                        <div
+                            *ngIf="signupFormMethod.password.invalid && (signupFormMethod.password.dirty || signupFormMethod.password.touched)">
+                            <div *ngIf="signupFormMethod.password.errors.required" class="alert alert-danger">
+                                Password is required.
+                            </div>
+                            <div *ngIf="signupFormMethod.password.errors.pattern" class="alert alert-danger">
+                                Your Password is incorrect (8 - 16) and No special characters!!
+                            </div>
+                        </div>
                     </div>
                     <div class="col-6">
                         <h6 class="font-weight-normal">ชื่อ</h6>
                         <input type="text" class="form-control" formControlName="firstname">
+                        <div
+                            *ngIf="signupFormMethod.firstname.invalid && (signupFormMethod.firstname.dirty || signupFormMethod.firstname.touched)">
+                            <div *ngIf="signupFormMethod.firstname.errors.required" class="alert alert-danger">
+                                Firstname is required.
+                            </div>
+                        </div>
                     </div>
                     <div class="col-6">
                         <h6 class="font-weight-normal">นามสกุล</h6>
-                        <input type="password" class="form-control" formControlName="lastname"><br>
+                        <input type="text" class="form-control" formControlName="lastname"><br>
+                        <div
+                            *ngIf="signupFormMethod.lastname.invalid && (signupFormMethod.lastname.dirty || signupFormMethod.lastname.touched)">
+                            <div *ngIf="signupFormMethod.lastname.errors.required" class="alert alert-danger">
+                                Lastname is required.
+                            </div>
+                        </div>
                     </div>
                     <div class="col-6">
                         <h6 class="font-weight-normal">โทรศัพท์</h6>
                         <input type="text" class="form-control" formControlName="phone">
+                        <div
+                            *ngIf="signupFormMethod.phone.invalid && (signupFormMethod.phone.dirty || signupFormMethod.phone.touched)">
+                            <div *ngIf="signupFormMethod.phone.errors.required" class="alert alert-danger">
+                                Phonenumber is required.
+                            </div>
+                            <div *ngIf="signupFormMethod.phone.errors.pattern" class="alert alert-danger">
+                                Your Phonenumber is incorrect (8 - 12) and No special characters!!
+                            </div>
+                        </div>
                     </div>
 
                     <div class="col-6"></div>
@@ -35,34 +75,65 @@
                     <div class="col-12 pt-3">
                         <h6 class="font-weight-normal">บ้านเลขที่</h6>
                         <textarea type="text" class="form-control" formControlName="address"></textarea><br>
-                    </div>
-                    <div class="col-12 p-3 container-fluid" formGroupName="addressForm">
-                        <div class="row">
-                            <div class="col-6">
-                                <h6 class="font-weight-normal">จังหวัด</h6>
-                                <input type="text" class="form-control" formControlName="province">
-                            </div>
-                            <div class="col-6">
-                                <h6 class="font-weight-normal">อําเภอ</h6>
-                                <input type="text" class="form-control" formControlName="district"><br>
+                        <div
+                            *ngIf="signupFormMethod.address.invalid && (signupFormMethod.address.dirty || signupFormMethod.address.touched)">
+                            <div *ngIf="signupFormMethod.address.errors.required" class="alert alert-danger">
+                                Address is required.
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-6">
-                                <h6 class="font-weight-normal">ตําบล</h6>
-                                <input type="text" class="form-control" formControlName="subdistrict">
-                            </div>
+                    </div>
+                    <div class="col-12 p-3 container-fluid" [formGroup]="postcodeFrom">
+                        <div class="row pb-3">
                             <div class="col-6">
                                 <h6 class="font-weight-normal">รหัสไปรษณีย์</h6>
-                                <input type="text" class="form-control" formControlName="zipcode">
+                                <input type="text" class="form-control" formControlName="zipcode"><br>
+                                <div
+                                    *ngIf="postcodeFromMethod.zipcode.invalid && (postcodeFromMethod.zipcode.dirty || postcodeFromMethod.zipcode.touched)">
+                                    <div *ngIf="postcodeFromMethod.zipcode.errors.required" class="alert alert-danger">
+                                        zipcode is required.
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-6"></div>
+
+                            <div class="col-6">
+                                <h6 class="font-weight-normal">จังหวัด</h6>
+                                <input type="text" class="form-control" formControlName="province" readonly><br>
+                                <div
+                                    *ngIf="postcodeFromMethod.province.invalid && (postcodeFromMethod.province.dirty || postcodeFromMethod.province.touched)">
+                                    <div *ngIf="postcodeFromMethod.province.errors.required" class="alert alert-danger">
+                                        province is required.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row pb-3">
+                            <div class="col-6">
+                                <h6 class="font-weight-normal">อําเภอ</h6>
+                                <input type="text" class="form-control" formControlName="district" ><br>
+                                <div
+                                    *ngIf="postcodeFromMethod.district.invalid && (postcodeFromMethod.district.dirty || postcodeFromMethod.district.touched)">
+                                    <div *ngIf="postcodeFromMethod.district.errors.required" class="alert alert-danger">
+                                        district is required.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-6">
+                                <h6 class="font-weight-normal">ตําบล</h6>
+                                <input type="text" class="form-control" formControlName="subdistrict"><br>
+                                <div
+                                    *ngIf="postcodeFromMethod.subdistrict.invalid && (postcodeFromMethod.subdistrict.dirty || postcodeFromMethod.subdistrict.touched)">
+                                    <div *ngIf="postcodeFromMethod.subdistrict.errors.required"
+                                        class="alert alert-danger">
+                                        subdistrict is required.
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
                     <div class="col-6">
-                        <br>
-                        <button type="submit" class="btn btn-dark w-100" (click)="onClick()">ลงทะเบียน</button>
+                        <button type="submit" class="btn btn-dark w-100" (click)="signupRegister()">ลงทะเบียน</button>
                     </div>
                 </div>
             </form>
