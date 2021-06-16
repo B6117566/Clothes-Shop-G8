@@ -1,1 +1,66 @@
-<p>edit works!</p>
+<div class="container pt-4">
+    <h2 class="text-break font-weight-bolder">เเก้ไขบัญชี</h2><br>
+    <div class="card shadow">
+        <div class="card-body">
+            <form [formGroup]="signupForm">
+                <div class="row">
+                    <div class="col-6">
+                        <h6 class="font-weight-normal">ชื่อ</h6>
+                        <input type="text" class="form-control" formControlName="firstname">
+                        <div
+                            *ngIf="signupFormMethod.firstname.invalid && (signupFormMethod.firstname.dirty || signupFormMethod.firstname.touched)">
+                            <div *ngIf="signupFormMethod.firstname.errors.required" class="alert alert-danger">
+                                Firstname is required.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <h6 class="font-weight-normal">นามสกุล</h6>
+                        <input type="text" class="form-control" formControlName="lastname"><br>
+                        <div
+                            *ngIf="signupFormMethod.lastname.invalid && (signupFormMethod.lastname.dirty || signupFormMethod.lastname.touched)">
+                            <div *ngIf="signupFormMethod.lastname.errors.required" class="alert alert-danger">
+                                Lastname is required.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <h6 class="font-weight-normal">โทรศัพท์</h6>
+                        <input type="text" class="form-control" formControlName="phone">
+                        <div
+                            *ngIf="signupFormMethod.phone.invalid && (signupFormMethod.phone.dirty || signupFormMethod.phone.touched)">
+                            <div *ngIf="signupFormMethod.phone.errors.required" class="alert alert-danger">
+                                Phonenumber is required.
+                            </div>
+                            <div *ngIf="signupFormMethod.phone.errors.pattern" class="alert alert-danger">
+                                Your Phonenumber is incorrect (8 - 12) and No special characters!!
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-6"></div>
+                    <div class="col-12">
+                        <br>
+                        <hr>
+                        <h4 class="font-weight-bolder">ที่อยู่</h4>
+
+                    </div>
+                    <div class="col-12 pt-3">
+                        <h6 class="font-weight-normal">บ้านเลขที่ และ อื่นๆ</h6>
+                        <textarea type="text" class="form-control" formControlName="address"></textarea><br>
+                        <div
+                            *ngIf="signupFormMethod.address.invalid && (signupFormMethod.address.dirty || signupFormMethod.address.touched)">
+                            <div *ngIf="signupFormMethod.address.errors.required" class="alert alert-danger">
+                                Address is required.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-6">
+                        <button type="submit" class="btn btn-dark w-100" (click)="update()">บันทึกข้อมูล</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

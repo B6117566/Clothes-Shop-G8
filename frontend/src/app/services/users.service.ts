@@ -40,10 +40,8 @@ export class UsersService {
     let token = this.local.get('user').token;
     let user_id = this.local.get('user').result.id;
     let body_send = JSON.stringify([
-      { id: data.id },
+      { id: user_id },
       {
-        email: data.email,
-        password: data.password,
         firstname: data.firstname,
         lastname: data.lastname,
         phone: data.phone,
@@ -51,7 +49,7 @@ export class UsersService {
       },
     ]);
     return this.http.put<any>(
-      'http://localhost:3000/api/users/get/id/' + user_id,
+      'http://localhost:3000/api/users/put',
       body_send,
       {
         headers: new HttpHeaders().set('Authorization', token),
