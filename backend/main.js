@@ -27,11 +27,11 @@ expressApp.use("/api/users", require("./api/user"));
 expressApp.use("/api/typeproducts", require("./api/typeproduct"));
 expressApp.use("/api/sizeproducts", require("./api/sizeproduct"));
 expressApp.use("/api/products", require("./api/product"));
+expressApp.use("/api/orderhistorys", require("./api/orderhistory"));
 expressApp.use("/api/genders", require("./api/gender"));
 expressApp.use("/api/favorites", require("./api/favorite"));
+expressApp.use("/api/carts", require("./api/cart"));
 
-
-//เหลือ cart orderhistory
 //----------------------------------------------------------------------------
 
 //Running Server

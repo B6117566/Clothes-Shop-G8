@@ -65,8 +65,7 @@ const deleteFavorite = async (id) => {
 };
 
 //--------------------------------------------------------------------------
-//router.route("/get/id/:ID").get(authorization, (req, res) => {
-router.route("/get/id/:ID").get((req, res) => {
+router.route("/get/id/:ID").get(authorization, (req, res) => {
   getFavoritesByID(req.params.ID)
     .then((result) => {
       res.status(200).json(result);
@@ -76,8 +75,7 @@ router.route("/get/id/:ID").get((req, res) => {
     });
 });
 
-//router.route("/add").post(authorization, (req, res) => {
-router.route("/add").post((req, res) => {
+router.route("/add").post(authorization, (req, res) => {
   insertFavorite(req.body)
     .then((result) => {
       res.status(201).json(result);
@@ -87,8 +85,7 @@ router.route("/add").post((req, res) => {
     });
 });
 
-//router.route("/del").delete(authorization, (req, res) => {
-router.route("/del/:id").delete((req, res) => {
+router.route("/del/:id").delete(authorization, (req, res) => {
   deleteFavorite(req.params.id)
     .then((result) => {
       res.status(200).json(result);

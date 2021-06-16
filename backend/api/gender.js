@@ -1,6 +1,7 @@
 var expressFunction = require("express");
 const router = expressFunction.Router();
 
+const authorization = require("../config/authorize");
 const Gender = require("../model/gender.model");
 const Product = require("../model/product.model");
 const Favorite = require("../model/favorite.model");
@@ -113,8 +114,7 @@ router.route("/get/:gender/:search").get((req, res) => {
 
 //----------------------------------------------------------------------------
 //ใช้ตอนที่ Login แล้ว
-//router.route("/get/all/:gender/:ID").get(authorization, (req, res) => {
-router.route("/get/all/:gender/:ID").get((req, res) => {
+router.route("/get/all/:gender/:ID").get(authorization, (req, res) => {
   findGenders(new RegExp(req.params.gender))
     .then((resultGender) => {
       getProductAsGender(resultGender.id)
@@ -144,8 +144,7 @@ router.route("/get/all/:gender/:ID").get((req, res) => {
 });
 
 //ส่งคำว่า Men หรือ Women เข้ามาหลัง get/ แล้วต่อไปเป็นคำค้นหา /ID USER
-//router.route("/get/:gender/:search/:ID").get(authorization, (req, res) => {
-router.route("/get/:gender/:search/:ID").get((req, res) => {
+router.route("/get/:gender/:search/:ID").get(authorization, (req, res) => {
   findGenders(new RegExp(req.params.gender))
     .then((resultGender) => {
       findProductAsGender(resultGender.id, new RegExp(req.params.search))
