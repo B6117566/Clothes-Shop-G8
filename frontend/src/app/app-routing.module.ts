@@ -9,6 +9,7 @@ import { FavoriteComponent } from './components/favorite/favorite.component';
 import { CartComponent } from './components/cart/cart.component';
 import { LoginComponent } from './components/login/login.component';
 import { SingnupComponent } from './components/singnup/singnup.component';
+import { EditComponent } from './components/edit/edit.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'cart', component: CartComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SingnupComponent },
+  { path: 'edit', component: EditComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];
 
