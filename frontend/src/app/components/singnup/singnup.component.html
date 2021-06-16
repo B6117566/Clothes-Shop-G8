@@ -92,6 +92,9 @@
                                     <div *ngIf="postcodeFromMethod.zipcode.errors.required" class="alert alert-danger">
                                         zipcode is required.
                                     </div>
+                                    <div *ngIf="signupFormMethod.phone.errors.pattern" class="alert alert-danger">
+                                        Your zipcode is incorrect (5) only and No special characters!!
+                                    </div>
                                 </div>
                             </div>
 
