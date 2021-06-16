@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 //-------------------------------------------------------------------------
-const Postcodes = require("./postcode.model");
 const UserTypes = require("./usertype.model");
 //-------------------------------------------------------------------------
 
@@ -13,10 +12,6 @@ const userSchema = Schema(
     lastname: String,
     phone: String,
     address: String,
-    postcode_id: {
-      type: Schema.Types.ObjectId,
-      ref: "Postcodes",
-    },
     usertype_id: {
       type: Schema.Types.ObjectId,
       ref: "UserTypes",

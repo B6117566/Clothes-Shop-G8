@@ -73,64 +73,12 @@
 
                     </div>
                     <div class="col-12 pt-3">
-                        <h6 class="font-weight-normal">บ้านเลขที่</h6>
+                        <h6 class="font-weight-normal">บ้านเลขที่ และ อื่นๆ</h6>
                         <textarea type="text" class="form-control" formControlName="address"></textarea><br>
                         <div
                             *ngIf="signupFormMethod.address.invalid && (signupFormMethod.address.dirty || signupFormMethod.address.touched)">
                             <div *ngIf="signupFormMethod.address.errors.required" class="alert alert-danger">
                                 Address is required.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 p-3 container-fluid" [formGroup]="postcodeFrom">
-                        <div class="row pb-3">
-                            <div class="col-6">
-                                <h6 class="font-weight-normal">รหัสไปรษณีย์</h6>
-                                <input type="text" class="form-control" formControlName="zipcode"><br>
-                                <div
-                                    *ngIf="postcodeFromMethod.zipcode.invalid && (postcodeFromMethod.zipcode.dirty || postcodeFromMethod.zipcode.touched)">
-                                    <div *ngIf="postcodeFromMethod.zipcode.errors.required" class="alert alert-danger">
-                                        zipcode is required.
-                                    </div>
-                                    <div *ngIf="signupFormMethod.phone.errors.pattern" class="alert alert-danger">
-                                        Your zipcode is incorrect (5) only and No special characters!!
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-6">
-                                <h6 class="font-weight-normal">จังหวัด</h6>
-                                <input type="text" class="form-control" formControlName="province" readonly><br>
-                                <div
-                                    *ngIf="postcodeFromMethod.province.invalid && (postcodeFromMethod.province.dirty || postcodeFromMethod.province.touched)">
-                                    <div *ngIf="postcodeFromMethod.province.errors.required" class="alert alert-danger">
-                                        province is required.
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row pb-3">
-                            <div class="col-6">
-                                <h6 class="font-weight-normal">อําเภอ</h6>
-                                <input type="text" class="form-control" formControlName="district" ><br>
-                                <div
-                                    *ngIf="postcodeFromMethod.district.invalid && (postcodeFromMethod.district.dirty || postcodeFromMethod.district.touched)">
-                                    <div *ngIf="postcodeFromMethod.district.errors.required" class="alert alert-danger">
-                                        district is required.
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-6">
-                                <h6 class="font-weight-normal">ตําบล</h6>
-                                <input type="text" class="form-control" formControlName="subdistrict"><br>
-                                <div
-                                    *ngIf="postcodeFromMethod.subdistrict.invalid && (postcodeFromMethod.subdistrict.dirty || postcodeFromMethod.subdistrict.touched)">
-                                    <div *ngIf="postcodeFromMethod.subdistrict.errors.required"
-                                        class="alert alert-danger">
-                                        subdistrict is required.
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>

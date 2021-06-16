@@ -124,9 +124,7 @@ const findUserByID = async (id) => {
           reject(new Error("Cannot find User By ID"));
         }
       }
-    })
-      .populate("postcode_id")
-      .populate("usertype_id");
+    }).populate("usertype_id");
   });
 };
 
