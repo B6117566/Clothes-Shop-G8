@@ -18,18 +18,17 @@ import { WomenService } from 'src/app/services/genders/women.service';
   templateUrl: './carditem.component.html',
   styleUrls: ['./carditem.component.css'],
 })
-export class CarditemComponent implements OnInit, AfterContentChecked{
-
+export class CarditemComponent implements OnInit, AfterContentChecked {
   @Input() genderStatus: string;
   @Input() selectType: string;
-  @Input() searchText: any
+  @Input() searchText: any;
 
-  user_id: string
-  product_id: number
+  user_id: string;
+  product_id: number;
   products: any;
   productSelect: any;
   productLoad: any;
-  favorites: any
+  favorites: any;
 
   heart: any;
 
@@ -40,9 +39,9 @@ export class CarditemComponent implements OnInit, AfterContentChecked{
   ) {}
 
   ngOnInit(): void {
-    this.product_id = undefined
+    this.product_id = undefined;
     this.productSelect = '';
-    this.user_id = "60c8a18b34edae473c637048" //fake user
+    this.user_id = '60c8a18b34edae473c637048'; //fake user
     this.onLoading();
   }
 
@@ -81,37 +80,50 @@ export class CarditemComponent implements OnInit, AfterContentChecked{
       }
       this.fr.getFavorites(this.user_id).subscribe(
         (data) => {
-          this.favorites = data
-        }, (err) => {
-          console.log(err)
+          this.favorites = data;
+        },
+        (err) => {
+          console.log(err);
         }
-      )
+      );
     } catch (error) {
       console.log(error);
     }
   }
 
   receiveData(id) {
-    this.products.map(data => {
-      if(data._id === id){
-        data.status_favorite = true
+    this.products.map((data) => {
+      if (data._id === id) {
+        data.status_favorite = true;
       }
-    })
+    });
   }
 
   selectProduct(id: number) {
     this.productSelect = this.products[id];
-    this.product_id = id
+    this.product_id = id;
   }
 
-  search(){
-    this.men.searchMenProduct(this.genderStatus,  this.searchText.value, this.user_id).subscribe(
-      (data) => {
-        this.products = data
-      }, (err) => {
-        console.log(err)
-      }
-    )
+  search() {
+    if (this.searchText.value != "") {
+      this.men
+        .searchMenProduct(
+          this.genderStatus,
+          this.searchText.value,
+          this.user_id
+        )
+        .subscribe(
+          (data) => {
+            this.productLoad = data;
+            this.products = data;
+          },
+          (err) => {
+            console.log(err);
+          }
+        );
+    } else {
+      this.onLoading();
+    }
   }
   delFavorite(id: number) {}
 }
