@@ -6,6 +6,7 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class ProductsService {
+  
   products: any;
 
   constructor(private http: HttpClient) {}
@@ -15,7 +16,6 @@ export class ProductsService {
       map((data) => {
         if (data) {
           this.products = data;
-          console.log(this.products);
         }
         return this.products;
       })

@@ -11,12 +11,11 @@ export class FavoritesService {
 
   constructor(private http: HttpClient) {}
 
-  getFavorites() {
-    return this.http.get<any>('http://localhost:3000/api/favorites/get').pipe(
+  getFavorites(id?: string) {
+    return this.http.get<any>("http://localhost:3000/api/favorites/get/id/" + id).pipe(
       map((data) => {
         if (data) {
           this.favorites = data;
-          console.log(this.favorites)
         }
         return this.favorites;
       })
@@ -28,6 +27,15 @@ export class FavoritesService {
       map((data) => {
         return data
       })
+    )
+  }
+
+  delFavorite(id?: any){
+    return this.http.delete<any>('http://localhost:3000/api/favorites/del/' + id).pipe(
+      map((data) => {
+        return data
+      })
+      
     )
   }
 }

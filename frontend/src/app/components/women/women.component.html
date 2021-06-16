@@ -1,6 +1,6 @@
 <div class="container" style="margin-top: 130px">
     <div class="d-flex justify-content-center row">
-        <button type="button" class="btn">
+        <button type="button" class="btn" (click)="onClickTop()">
             <div class="card text-white" style="min-height: 300px; min-width: 300px">
                 <img src="https://cdn.discordapp.com/attachments/852623664591405157/852857281326350356/thgoods_11_434440_1_1.jpg"
                     class="card-img" />
@@ -9,7 +9,7 @@
                 </div>
             </div>
         </button>
-        <button type="button" class="btn" style="margin-left: 60px">
+        <button type="button" class="btn" style="margin-left: 60px" (click)="onClickBottom()">
             <div class="card text-white" style="min-height: 300px; min-width: 300px">
                 <img src="https://media.discordapp.net/attachments/852623664591405157/852858423477534770/thgoods_436551_sub8_1.jpg"
                     class="card-img" />
@@ -31,6 +31,6 @@
         </div>
     </div>
     <div style="margin-top: 30px">
-        <app-carditem></app-carditem>
+        <app-carditem [genderStatus]="genderStatus" [selectType]="selectType"></app-carditem>
     </div>
 </div>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MenService } from 'src/app/services/genders/men.service';
 
 @Component({
   selector: 'app-navbar',
@@ -7,9 +8,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  product: any
+
+  constructor(private men: MenService) { }
 
   ngOnInit(): void {
   }
+
+  onLoading(){
+    this.men.getMenProduct().subscribe(
+      (data) => {
+        this.product = data
+      }, (err) => {
+        console.log(err)
+      }
+    )
+  }
+
+
 
 }

@@ -5,25 +5,24 @@
                 <img [src]="item.img" class="card-img-top">
                 <div class="card-body">
                     <h5 class="card-title font-weight-bold">{{item.name}}</h5>
-                    <p class="card-text font-weight-bold">THB{{item.price}}.00</p>
+                    <p class="card-text font-weight-bold">THB {{item.price}}.00</p>
                     <div class="row">
                         <div>
-                            <a class="d-flex align-self-bottom" (click)="clickFav()" *ngIf="s == true"
+                            <a class="d-flex align-self-bottom" *ngIf="item.status_favorite == false"
                                 style="color: black; margin-left: 15px;">
                                 <i class="bi bi-heart" style="font-size: 18px"></i>
                             </a>
-                            <a class="d-flex align-self-bottom" (click)="clickFav()" *ngIf="s == false"
+                            <a class="d-flex align-self-bottom" *ngIf="item.status_favorite == true"
                                 style="color:red; margin-left: 15px;">
                                 <i class="bi bi-heart-fill" style="font-size: 18px"></i>
                             </a>
                         </div>
                         <a type="button" class="card-link" style="margin-left: 15px;" data-toggle="modal"
                             data-target="#staticBackdrop" (click)="selectProduct(i)">ดูรายละเอียดสินค้า</a>
-                        <app-detail [productSelect]="productSelect"></app-detail>
+                        <app-detail [productSelect]="productSelect" (massageEvent)="receiveData($event)"></app-detail>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
 </div>

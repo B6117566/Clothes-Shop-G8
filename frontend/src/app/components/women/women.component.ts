@@ -7,9 +7,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WomenComponent implements OnInit {
 
+  genderStatus: string
+  selectType: string
+  
   constructor() { }
 
   ngOnInit(): void {
+    this.genderStatus = "Women"
+  }
+
+  onClickTop(){
+    this.selectType = "Tops"
+  }
+
+  onClickBottom(){
+    this.selectType = "Bottoms"
   }
 
 }

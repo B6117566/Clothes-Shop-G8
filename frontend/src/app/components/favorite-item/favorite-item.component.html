@@ -1,21 +1,21 @@
 <div class="col">
     <div class="bg-white border-bottom row" style="height: 250px" *ngFor="let item of favorites; index as i">
         <div class="col-3">
-            <br /><img [src]="item.Products.img" style="width: 85%" />
+            <br /><img [src]="item.product_id.img" style="width: 85%" />
         </div>
         <div class="col-8" style="padding: 0%">
             <br />
-            <p class="text-break font-weight-bolder">{{ item.Products.name }}</p>
+            <p class="text-break font-weight-bolder">{{ item.product_id.name }}</p>
             <p class="text-break font-weight-bolder">
-                THB {{ item.Products.price }}.00
+                THB {{ item.product_id.price }}.00
             </p>
-            <p class="text-break text-muted">รหัสสินค้า: {{ item.Products._id }}</p>
+            <p class="text-break text-muted">รหัสสินค้า: {{ item.product_id._id }}</p>
             <a type="button" class="card-link"data-toggle="modal"
                 data-target="#staticBackdrop" (click)="selectProduct(i)">ดูรายละเอียดสินค้า</a>
             <app-detail [productSelect]="productSelect"></app-detail>
         </div>
         <div class="col-1" style="margin-top: 20px">
-            <button type="button" class="close" aria-label="Close">
+            <button type="button" class="close" aria-label="Close" (click)="deleteFavorite(i)">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
