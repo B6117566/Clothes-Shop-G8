@@ -56,6 +56,10 @@ export class UsersService {
       {
         headers: new HttpHeaders().set('Authorization', token),
       }
+    ).pipe(
+      map((data) => {
+        return data;
+      })
     );
   }
 
@@ -63,6 +67,10 @@ export class UsersService {
     return this.http.post<any>(
       'http://localhost:3000/api/users/signup',
       signupData
+    ).pipe(
+      map((data) => {
+        return data;
+      })
     );
   }
 
