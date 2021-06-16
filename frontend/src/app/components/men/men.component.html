@@ -22,15 +22,15 @@
     <div class="d-flex justify-content-center row" style="margin-top: 40px">
         <div class="input-group mb-3" style="width: 680px">
             <input type="search" class="form-control" placeholder="Search" aria-label="Search"
-                aria-describedby="button-addon2" />
+                aria-describedby="button-addon2" [formControl]="searchText"/>
             <div class="input-group-append">
-                <button class="btn btn-outline-secondary" type="button" id="button-addon2">
+                <button class="btn btn-outline-secondary" type="button" id="button-addon2" (click)="search()">
                     <i class="bi bi-search" style="font-size: 16px"></i>
                 </button>
             </div>
         </div>
     </div>
     <div style="margin-top: 30px">
-        <app-carditem [genderStatus]="genderStatus" [selectType]="selectType"></app-carditem>
+        <app-carditem [genderStatus]="genderStatus" [selectType]="selectType" [searchText]="searchText"></app-carditem>
     </div>
 </div>
