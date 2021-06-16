@@ -1,7 +1,6 @@
 var expressFunction = require("express");
 const router = expressFunction.Router();
 
-const authorization = require("../config/authorize");
 const UserType = require("../model/usertype.model");
 
 //--------------------------------------------------------------------------
@@ -24,7 +23,7 @@ const findUserTypes = async (data) => {
 
 //--------------------------------------------------------------------------
 
-router.route("/get/:search").get(authorization, (req, res) => {
+router.route("/get/:search").get((req, res) => {
   findUserTypes(new RegExp(req.params.search))
     .then((result) => {
       res.status(200).json(result);
