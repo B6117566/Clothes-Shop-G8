@@ -131,7 +131,7 @@ router.route("/get/all/:gender/:ID").get(authorization, (req, res) => {
               res.status(200).json(resultProduct);
             })
             .catch((err) => {
-              res.status(404).send(String(err));
+              res.status(200).json(resultProduct);
             });
         })
         .catch((err) => {
@@ -161,7 +161,7 @@ router.route("/get/:gender/:search/:ID").get(authorization, (req, res) => {
               res.status(200).json(resultProduct);
             })
             .catch((err) => {
-              res.status(404).send(String(err));
+              res.status(200).json(resultProduct);
             });
         })
         .catch((err) => {

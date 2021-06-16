@@ -1,34 +1,57 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { LocalStorageService } from 'angular-web-storage';
 import { map } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class WomenService {
+  product: any;
 
-  product: any
+  constructor(private http: HttpClient, public local: LocalStorageService) {}
 
-  constructor(private http: HttpClient) {}
-
-  getWomenProduct(gender?: any, user_id?: any) {
-    return this.http.get<any>("http://localhost:3000/api/genders/get/all/" + gender + "/" + user_id).pipe(
-      map((data) => {
-        if (data) {
-          this.product = data;
+  getWomenProduct(gender?: any) {
+    let token = this.local.get('user').token;
+    let user_id = this.local.get('user').result.id;
+    return this.http
+      .get<any>(
+        'http://localhost:3000/api/genders/get/all/' + gender + '/' + user_id,
+        {
+          headers: new HttpHeaders().set('Authorization', token),
         }
-        return this.product;
-      })
-    );
+      )
+      .pipe(
+        map((data) => {
+          if (data) {
+            this.product = data;
+          }
+          return this.product;
+        })
+      );
   }
-  searchWomenProduct(gender?: any, searchText?: any, user_id?: any){
-    return this.http.get<any>("http://localhost:3000/api/genders/get/" + gender + "/" + searchText + "/" + user_id).pipe(
-      map((data) => {
-        if(data) {
-          this.product = data
+  searchWomenProduct(gender?: any, searchText?: any) {
+    let token = this.local.get('user').token;
+    let user_id = this.local.get('user').result.id;
+    return this.http
+      .get<any>(
+        'http://localhost:3000/api/genders/get/' +
+          gender +
+          '/' +
+          searchText +
+          '/' +
+          user_id,
+        {
+          headers: new HttpHeaders().set('Authorization', token),
         }
-        return this.product
-      })
-    )
+      )
+      .pipe(
+        map((data) => {
+          if (data) {
+            this.product = data;
+          }
+          return this.product;
+        })
+      );
   }
 }

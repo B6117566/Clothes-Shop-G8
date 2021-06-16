@@ -8,7 +8,6 @@ import {
   AfterContentInit,
 } from '@angular/core';
 
-import { ProductsService } from 'src/app/services/products.service';
 import { FavoritesService } from 'src/app/services/favorites.service';
 import { MenService } from 'src/app/services/genders/men.service';
 import { WomenService } from 'src/app/services/genders/women.service';
@@ -19,11 +18,11 @@ import { WomenService } from 'src/app/services/genders/women.service';
   styleUrls: ['./carditem.component.css'],
 })
 export class CarditemComponent implements OnInit, AfterContentChecked {
+  
   @Input() genderStatus: string;
   @Input() selectType: string;
   @Input() searchText: any;
 
-  user_id: string;
   product_id: number;
   products: any;
   productSelect: any;
@@ -41,7 +40,6 @@ export class CarditemComponent implements OnInit, AfterContentChecked {
   ngOnInit(): void {
     this.product_id = undefined;
     this.productSelect = '';
-    this.user_id = '60c8a18b34edae473c637048'; //fake user
     this.onLoading();
   }
 
@@ -58,7 +56,7 @@ export class CarditemComponent implements OnInit, AfterContentChecked {
   onLoading() {
     try {
       if (this.genderStatus == 'Men') {
-        this.men.getMenProduct(this.genderStatus, this.user_id).subscribe(
+        this.men.getMenProduct(this.genderStatus).subscribe(
           (data) => {
             this.productLoad = data;
             this.products = data;
@@ -68,7 +66,7 @@ export class CarditemComponent implements OnInit, AfterContentChecked {
           }
         );
       } else if (this.genderStatus == 'Women') {
-        this.women.getWomenProduct(this.genderStatus, this.user_id).subscribe(
+        this.women.getWomenProduct(this.genderStatus).subscribe(
           (data) => {
             this.productLoad = data;
             this.products = data;
@@ -78,7 +76,7 @@ export class CarditemComponent implements OnInit, AfterContentChecked {
           }
         );
       }
-      this.fr.getFavorites(this.user_id).subscribe(
+      this.fr.getFavorites().subscribe(
         (data) => {
           this.favorites = data;
         },
@@ -110,7 +108,6 @@ export class CarditemComponent implements OnInit, AfterContentChecked {
         .searchMenProduct(
           this.genderStatus,
           this.searchText.value,
-          this.user_id
         )
         .subscribe(
           (data) => {

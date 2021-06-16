@@ -8,7 +8,6 @@ import { FavoritesService } from 'src/app/services/favorites.service';
 })
 export class FavoriteItemComponent implements OnInit, AfterContentChecked {
 
-  user_id: string 
   favorites: any
   productSelect: any;
   favorite_id: Number
@@ -16,13 +15,12 @@ export class FavoriteItemComponent implements OnInit, AfterContentChecked {
   constructor(private fr: FavoritesService) { }
 
   ngOnInit(): void {
-    this.user_id = "60c8a18b34edae473c637048" //fake user
     this.onLoading()
     this.productSelect = ""
   }
 
   onLoading(){
-    this.fr.getFavorites(this.user_id).subscribe(
+    this.fr.getFavorites().subscribe(
       (data) => {
         this.favorites = data
       },

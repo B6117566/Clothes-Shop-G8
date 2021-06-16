@@ -24,6 +24,7 @@ import { ManageCardItemAddComponent } from './components/manage-product/manage-c
 import { ManageCardItemDeleteComponent } from './components/manage-product/manage-card-item-list/manage-card-item-delete/manage-card-item-delete.component';
 import { LoginComponent } from './components/login/login.component';
 import { SingnupComponent } from './components/singnup/singnup.component';
+import { EditComponent } from './components/edit/edit.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { SingnupComponent } from './components/singnup/singnup.component';
     ManageCardItemDeleteComponent,
     LoginComponent,
     SingnupComponent,
+    EditComponent,
   ],
   imports: [
     BrowserModule,
