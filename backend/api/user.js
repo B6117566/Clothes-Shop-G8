@@ -101,7 +101,7 @@ router.route("/signin").post(async (req, res) => {
         usertype: result_data.usertype_id.name,
       };
 
-      res.status(200).json({ result, token, status });
+      res.status(200).json({ result_data, token, status });
     } else {
       res.status(404).json({ status });
     }
