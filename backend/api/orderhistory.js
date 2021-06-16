@@ -135,7 +135,8 @@ router.route("/get/id/:ID").get((req, res) => {
     });
 });
 
-router.route("/add").post(authorization, (req, res) => {
+//router.route("/add").post(authorization, (req, res) => {
+router.route("/add").post((req, res) => {
   insertProduct(req.body)
     .then((result) => {
       res.status(201).json(result);
@@ -145,7 +146,8 @@ router.route("/add").post(authorization, (req, res) => {
     });
 });
 
-router.route("/del/:id").delete(authorization, (req, res) => {
+//router.route("/del").delete(authorization, (req, res) => {
+router.route("/del/:id").delete((req, res) => {
   deleteProduct(req.params.id)
     .then((result) => {
       res.status(200).json(result);
@@ -155,7 +157,8 @@ router.route("/del/:id").delete(authorization, (req, res) => {
     });
 });
 
-router.route("/put").put(authorization, (req, res) => {
+//router.route("/edit").put(authorization, (req, res) => {
+router.route("/put").put((req, res) => {
   //----req[0] ID, req[1] ช้อมูล
   updateProduct(req.body[0].id, req.body[1])
     .then((result) => {

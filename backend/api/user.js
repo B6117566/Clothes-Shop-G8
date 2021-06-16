@@ -145,8 +145,7 @@ const updateUser = async (id, data) => {
 
 //--------------------------------------------------------------------------
 
-//router.route("/get/id/:ID").get(authorization, (req, res) => {
-router.route("/get/id/:ID").get((req, res) => {
+router.route("/get/id/:ID").get(authorization, (req, res) => {
   findUserByID(req.params.ID)
     .then((result) => {
       res.status(200).json(result);
@@ -156,8 +155,7 @@ router.route("/get/id/:ID").get((req, res) => {
     });
 });
 
-//router.route("/put").put(authorization, (req, res) => {
-router.route("/put").put((req, res) => {
+router.route("/put").put(authorization, (req, res) => {
   //----req[0] ID, req[1] ช้อมูล
   updateUser(req.body[0].id, req.body[1])
     .then((result) => {
