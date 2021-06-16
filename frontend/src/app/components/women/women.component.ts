@@ -32,7 +32,6 @@ export class WomenComponent implements OnInit {
 
   search(){
     this.cardItem.search()
-    this.searchText.reset()
   }
 
 }
