@@ -21,4 +21,14 @@ export class WomenService {
       })
     );
   }
+  searchWomenProduct(gender?: any, searchText?: any, user_id?: any){
+    return this.http.get<any>("http://localhost:3000/api/genders/get/" + gender + "/" + searchText + "/" + user_id).pipe(
+      map((data) => {
+        if(data) {
+          this.product = data
+        }
+        return this.product
+      })
+    )
+  }
 }

@@ -22,6 +22,7 @@ export class CarditemComponent implements OnInit, AfterContentChecked{
 
   @Input() genderStatus: string;
   @Input() selectType: string;
+  @Input() searchText: any
 
   user_id: string
   product_id: number
@@ -103,5 +104,14 @@ export class CarditemComponent implements OnInit, AfterContentChecked{
     this.product_id = id
   }
 
+  search(){
+    this.men.searchMenProduct(this.genderStatus,  this.searchText.value, this.user_id).subscribe(
+      (data) => {
+        this.products = data
+      }, (err) => {
+        console.log(err)
+      }
+    )
+  }
   delFavorite(id: number) {}
 }

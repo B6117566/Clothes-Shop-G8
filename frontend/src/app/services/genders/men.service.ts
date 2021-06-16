@@ -16,11 +16,22 @@ export class MenService {
       map((data) => {
         if (data) {
           this.product = data;
-          console.log(this.product)
         }
         return this.product;
       })
     );
+  }
+
+  searchMenProduct(gender?: any, searchText?: any, user_id?: any){
+    return this.http.get<any>("http://localhost:3000/api/genders/get/" + gender + "/" + searchText + "/" + user_id).pipe(
+      map((data) => {
+        if(data) {
+          this.product = data
+          console.log(this.product)
+        }
+        return this.product
+      })
+    )
   }
 
 }

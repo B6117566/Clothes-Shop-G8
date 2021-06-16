@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { CarditemComponent } from '../carditem/carditem.component';
 
 @Component({
   selector: 'app-women',
@@ -6,6 +8,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./women.component.css']
 })
 export class WomenComponent implements OnInit {
+
+  @ViewChild(CarditemComponent) cardItem: CarditemComponent
+
+  searchText = new FormControl('')
 
   genderStatus: string
   selectType: string
@@ -22,6 +28,11 @@ export class WomenComponent implements OnInit {
 
   onClickBottom(){
     this.selectType = "Bottoms"
+  }
+
+  search(){
+    this.cardItem.search()
+    this.searchText.reset()
   }
 
 }
