@@ -1,28 +1,41 @@
 <div class="container card" style="margin-top: 180px;">
-    <div class="row">
-      <div class="col-sm border-right">
-        <div class="card-body">
-            <h1 class="card-title font-weight-bold">เข้าสู่ระบบ</h1>
-            <p>เข้าสู่ระบบด้วยอีเมลเเละรหัสผ่าน</p>
-            <form [formGroup]="loginForm">
-                <div class="form-group"><br>
-                  <label class="font-weight-bold">Email</label>
-                  <input type="email" class="form-control" formControlName="email">
-                </div>
-                <div class="form-group">
-                  <label class="font-weight-bold">Password</label>
-                  <input type="password" class="form-control" formControlName="password">
-                </div><br>
-                <button type="submit" class="btn btn-dark w-50" (click)="onClick()">เข้าสู่ระบบ</button>
-              </form>
-        </div>
-      </div>
-      <div class="col-sm">
-        <div class="card-body">
-            <h1 class="card-title font-weight-bold">สร้างบัญชีผู้ใช้ใหม่</h1>
-            <p>สร้างบัญชีผู้ใช้ เพื่อการใช้งานที่สะดวก ชำระเงินได้รวดเร็วยิ่งขึ้น!</p>
-            <a type="button" href="signup" class="btn btn-dark w-50" style="margin-top: 60px;">สร้างบัญชีผู้ใช้ใหม่</a>
-        </div>
+  <div class="row">
+    <div class="col-sm border-right">
+      <div class="card-body">
+        <h1 class="card-title font-weight-bold">เข้าสู่ระบบ</h1>
+        <p>เข้าสู่ระบบด้วยอีเมลเเละรหัสผ่าน</p>
+        <form [formGroup]="loginForm">
+          <div class="form-group"><br>
+            <label class="font-weight-bold">Email</label>
+            <input type="email" class="form-control" formControlName="email">
+            <div *ngIf=" (loginFromData.email.dirty || loginFromData.email.touched)">
+              <div *ngIf="loginFromData.email.errors?.required" class="alert alert-danger">
+                Email is not required
+              </div>
+              <div *ngIf="loginFromData.email.errors?.email" class="alert alert-danger">
+                Email is incorrect
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="font-weight-bold">Password</label>
+            <input type="password" class="form-control" formControlName="password">
+            <div *ngIf="(loginFromData.password.dirty || loginFromData.password.touched)">
+              <div *ngIf="loginFromData.password.errors?.required" class="alert alert-danger">
+                Password is required
+              </div>
+            </div>
+          </div><br>
+          <button type="submit" class="btn btn-dark w-50" (click)="onClick()">เข้าสู่ระบบ</button>
+        </form>
       </div>
     </div>
+    <div class="col-sm">
+      <div class="card-body">
+        <h1 class="card-title font-weight-bold">สร้างบัญชีผู้ใช้ใหม่</h1>
+        <p>สร้างบัญชีผู้ใช้ เพื่อการใช้งานที่สะดวก ชำระเงินได้รวดเร็วยิ่งขึ้น!</p>
+        <a type="button" href="signup" class="btn btn-dark w-50" style="margin-top: 60px;">สร้างบัญชีผู้ใช้ใหม่</a>
+      </div>
+    </div>
+  </div>
 </div>
