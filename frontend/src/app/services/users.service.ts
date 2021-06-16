@@ -39,7 +39,7 @@ export class UsersService {
   updateUserData(data: any) {
     let token = this.local.get('user').token;
     let user_id = this.local.get('user').result.id;
-    let body_send = JSON.stringify([
+    let body_send = ([
       { id: user_id },
       {
         firstname: data.firstname,
