@@ -1,18 +1,15 @@
-import { PostcodeService } from './../../services/postcode.service';
-import { AfterContentChecked, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { UsersService } from 'src/app/services/users.service';
 
 @Component({
   selector: 'app-singnup',
   templateUrl: './singnup.component.html',
   styleUrls: ['./singnup.component.css'],
 })
-export class SingnupComponent implements OnInit, AfterContentChecked {
-  postcode: any;
-  status_postcode: boolean;
-  constructor(private pc: PostcodeService) {
-    this.status_postcode = false;
-  }
+export class SingnupComponent implements OnInit {
+  constructor(private signup: UsersService, private router: Router) {}
 
   signupForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
@@ -27,62 +24,41 @@ export class SingnupComponent implements OnInit, AfterContentChecked {
       Validators.pattern('[0-9]{8,12}'),
     ]),
     address: new FormControl('', [Validators.required]),
+    usertype_id: new FormControl(''),
   });
 
-  postcodeFrom = new FormGroup({
-    province: new FormControl('', [Validators.required]),
-    district: new FormControl('', [Validators.required]),
-    subdistrict: new FormControl('', [Validators.required]),
-    zipcode: new FormControl('', [Validators.required,
-      Validators.pattern('[0-9]{5}')]),
-  });
-
-  ngOnInit(): void {}
-
-  ngAfterContentChecked() {
-    console.log(this.postcodeFrom.value.zipcode);
-    if (
-      this.postcodeFrom.value.zipcode.length == 5 &&
-      this.status_postcode == false
-    ) {
-      console.log('Work True');
-      this.status_postcode = !this.status_postcode;
-      this.getPostcodeByID(this.postcodeFrom.value.zipcode);
-    } else if (
-      this.postcodeFrom.value.zipcode.length < 5 ||
-      this.postcodeFrom.value.zipcode.length > 5
-    ) {
-      this.status_postcode = false;
-      console.log('Work False');
-    }
+  ngOnInit(): void {
+    this.checkUsertype();
   }
 
-  getPostcodeByID(id: any) {
-    try {
-      this.pc.getPostcodes(id).subscribe(
-        (data) => {
-          this.postcode = data;
-          console.log('POSTCODE WORK 5 => ', data);
-        },
-        (err) => {
-          console.log(err);
-        }
-      );
-    } catch (error) {
-      console.log(error);
-    }
+  checkUsertype() {
+    this.signup.getUsertype('Customer').subscribe(
+      (data) => {
+        this.signupForm.value.usertype_id = data[0]._id;
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
   }
 
   signupRegister() {
-    //postcode_id: new FormControl('', [Validators.required]),
-    //usertype_id: new FormControl('', [Validators.required]),
     console.log(this.signupForm.value);
+    this.signup.signUp(this.signupForm.value).subscribe(
+      (data) => {
+        if (data.message) {
+          this.router.navigate(['/login']);
+        } else {
+          alert('Cannot Sign up');
+        }
+      },
+      (err) => {
+        console.log(err);
+        alert('Cannot Sign up');
+      }
+    );
   }
   get signupFormMethod() {
     return this.signupForm.controls;
-  }
-
-  get postcodeFromMethod() {
-    return this.postcodeFrom.controls;
   }
 }
