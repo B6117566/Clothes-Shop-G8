@@ -5,9 +5,9 @@ const Postcode = require("../model/postcode.model");
 
 //--------------------------------------------------------------------------
 
-const getPostcodes = async () => {
+const findPostcodes = async (data) => {
   return new Promise((resolve, reject) => {
-    Postcode.find({}, (err, data) => {
+    Postcode.find({ zipcode: { $regex: data } }, (err, data) => {
       if (err) {
         reject(new Error("Cannot get Postcodes"));
       } else {
@@ -39,8 +39,8 @@ const findPostcodeByID = async (id) => {
 
 //--------------------------------------------------------------------------
 
-router.route("/get").get((req, res) => {
-  getPostcodes()
+router.route("/get/:zipcode").get((req, res) => {
+  findPostcodes(new RegExp(req.params.zipcode))
     .then((result) => {
       res.status(200).json(result);
     })

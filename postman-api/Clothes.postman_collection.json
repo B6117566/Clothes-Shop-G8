@@ -281,6 +281,52 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "get all product U Gen by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/genders/get/all/Men/60c8a18b34edae473c637048",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"genders",
+								"get",
+								"all",
+								"Men",
+								"60c8a18b34edae473c637048"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "search product USE  gender + want to search Copy",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/genders/get/Men/เสื้อ/60c8a18b34edae473c637048",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"genders",
+								"get",
+								"Men",
+								"เสื้อ",
+								"60c8a18b34edae473c637048"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
