@@ -113,6 +113,7 @@ router.route("/get/:gender/:search").get((req, res) => {
 
 //----------------------------------------------------------------------------
 //ใช้ตอนที่ Login แล้ว
+//router.route("/get/all/:gender/:ID").get(authorization, (req, res) => {
 router.route("/get/all/:gender/:ID").get((req, res) => {
   findGenders(new RegExp(req.params.gender))
     .then((resultGender) => {
@@ -143,6 +144,7 @@ router.route("/get/all/:gender/:ID").get((req, res) => {
 });
 
 //ส่งคำว่า Men หรือ Women เข้ามาหลัง get/ แล้วต่อไปเป็นคำค้นหา /ID USER
+//router.route("/get/:gender/:search/:ID").get(authorization, (req, res) => {
 router.route("/get/:gender/:search/:ID").get((req, res) => {
   findGenders(new RegExp(req.params.gender))
     .then((resultGender) => {
