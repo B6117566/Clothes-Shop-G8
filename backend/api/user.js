@@ -94,7 +94,7 @@ router.route("/signin").post(async (req, res) => {
     const status = loginStatus.status;
 
     if (status) {
-      const token = jwt.sign(result_data, key, { expiresIn: 60 * 20 });
+      const token = jwt.sign(result_data, key, { expiresIn: 60 * 60 });
 
       const result = {
         id: result_data.id,
