@@ -63,7 +63,7 @@ export class ProductsService {
 
   updateProduct(data: any) {
     var token = this.local.get('user').token;
-    const body_send = JSON.stringify([
+    const body_send = [
       { id: data.id },
       {
         name: data.name,
@@ -77,7 +77,7 @@ export class ProductsService {
         quantity: data.quantity,
         status_favorite: false,
       },
-    ]);
+    ];
     return this.http
       .put<any>('http://localhost:3000/api/products/put', body_send, {
         headers: new HttpHeaders().set('Authorization', token),
