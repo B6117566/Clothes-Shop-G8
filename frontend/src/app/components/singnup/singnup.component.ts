@@ -9,9 +9,9 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class SingnupComponent implements OnInit, AfterContentChecked {
   postcode: any;
-  status_postcode : boolean
+  status_postcode: boolean;
   constructor(private pc: PostcodeService) {
-    this.status_postcode = false
+    this.status_postcode = false;
   }
 
   signupForm = new FormGroup({
@@ -33,22 +33,26 @@ export class SingnupComponent implements OnInit, AfterContentChecked {
     province: new FormControl('', [Validators.required]),
     district: new FormControl('', [Validators.required]),
     subdistrict: new FormControl('', [Validators.required]),
-    zipcode: new FormControl('', [Validators.required]),
+    zipcode: new FormControl('', [Validators.required,
+      Validators.pattern('[0-9]{5}')]),
   });
 
   ngOnInit(): void {}
 
   ngAfterContentChecked() {
     console.log(this.postcodeFrom.value.zipcode);
-    if (this.postcodeFrom.value.zipcode.length == 5 && this.status_postcode == false) {
+    if (
+      this.postcodeFrom.value.zipcode.length == 5 &&
+      this.status_postcode == false
+    ) {
       console.log('Work True');
-      this.status_postcode = !this.status_postcode
+      this.status_postcode = !this.status_postcode;
       this.getPostcodeByID(this.postcodeFrom.value.zipcode);
     } else if (
       this.postcodeFrom.value.zipcode.length < 5 ||
       this.postcodeFrom.value.zipcode.length > 5
     ) {
-      this.status_postcode = false
+      this.status_postcode = false;
       console.log('Work False');
     }
   }

@@ -486,7 +486,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:3000/api/postcodes/get",
+							"raw": "localhost:3000/api/postcodes/get/30000",
 							"host": [
 								"localhost"
 							],
@@ -494,7 +494,8 @@
 							"path": [
 								"api",
 								"postcodes",
-								"get"
+								"get",
+								"30000"
 							]
 						}
 					},
