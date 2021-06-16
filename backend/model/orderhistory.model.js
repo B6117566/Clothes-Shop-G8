@@ -8,7 +8,6 @@ const Products = require("./product.model");
 const orderHistorySchema = Schema(
   {
     quantity: Number,
-    datetime: Date,
     user_id: {
       type: Schema.Types.ObjectId,
       ref: "Users",

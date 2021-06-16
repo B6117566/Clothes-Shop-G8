@@ -10,6 +10,7 @@ import { CartComponent } from './components/cart/cart.component';
 import { LoginComponent } from './components/login/login.component';
 import { SingnupComponent } from './components/singnup/singnup.component';
 import { EditComponent } from './components/edit/edit.component';
+import { OderComponent } from './components/oder/oder.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SingnupComponent },
   { path: 'edit', component: EditComponent },
+  { path: 'oder', component: OderComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];
 

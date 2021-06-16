@@ -16,7 +16,7 @@
             <div class="col bg-white border-bottom" style="min-height: 80px">
               <h2 class="text-break font-weight-bolder">{{productSelect.name}}</h2>
               <hr>
-              <h2 class="text-break font-weight-bolder">THB {{productSelect.price}}.00</h2>
+              <h2 class="text-break font-weight-bolder">THB {{productSelect.price}}</h2>
               <hr>
               <p class="text-break font-weight-light">{{productSelect.detail}}.</p>
             </div>
@@ -24,9 +24,9 @@
               <br>
               <p class="text-break font-weight-bolder">จํานวน</p>
               <div class="form-group">
-                <input type="number" class="form-control" [formControl]="amout"  style="width: 150px;" min=1>
+                <input type="number" class="form-control" [formControl]="amout"  style="width: 150px;" min=1 max={{productSelect.quantity}}>
               </div>
-              <p class="text-break font-weight-bolder">มีสินค้าทั้งหมด: 112 ชิ้น</p><br>
+              <p class="text-break font-weight-bolder">มีสินค้าทั้งหมด: {{productSelect.quantity}} ชิ้น</p><br>
               <div class="row">
                 <div class="col-6">
                   <button type="button" class="btn btn-primary btn-lg btn-block"  (click)="addFavorite()">เพิ่มรายการโปรด</button>

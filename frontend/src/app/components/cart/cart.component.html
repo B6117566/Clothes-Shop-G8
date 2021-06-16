@@ -7,18 +7,18 @@
         <div class="col-5" style="margin-top: 15px;"><br>
             <div class="card" style="min-height: 140px;">
                 <div class="col">
-                    <br><h6 class="text-break font-weight-bolder text-left">สรุปคําสั่งซื้อ 10 รายการ</h6><br>
+                    <br><h6 class="text-break font-weight-bolder text-left">สรุปคําสั่งซื้อ {{count}} รายการ</h6><br>
                     <div class="row">
                         <div class="col-7">
                             <h4 class="text-break font-weight-bolder text-left">ราคารวมทั้งหมด</h4>
                         </div>
                         <div class="col-5">
-                            <h4 class="text-break font-weight-bolder text-right">THB 2500.00</h4>
+                            <h4 class="text-break font-weight-bolder text-right">THB {{total}}</h4>
                         </div>
                     </div>
                 </div>
             </div>
-            <br><button type="button" class="btn btn-danger btn-lg btn-block">ชําระเงิน</button>
+            <br><button type="button" class="btn btn-danger btn-lg btn-block" (click)="apply()">ชําระเงิน</button>
         </div>
     </div>
 </div>

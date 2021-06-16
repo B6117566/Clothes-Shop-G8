@@ -24,7 +24,6 @@ export class DetailComponent implements OnInit, OnChanges {
   ngOnChanges() {}
 
   addCart() {
-    console.log(this.amout.value);
     this.cart.addCart(this.productSelect._id, this.amout.value).subscribe(
       (data) => {
         alert(data.message)

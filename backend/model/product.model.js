@@ -3,7 +3,6 @@ const Schema = mongoose.Schema;
 //-------------------------------------------------------------------------
 const Genders = require("./gender.model");
 const TypeProducts = require("./typeproduct.model");
-const SizeProducts = require("./sizeproduct.model");
 //-------------------------------------------------------------------------
 
 const productSchema = Schema(
@@ -13,7 +12,6 @@ const productSchema = Schema(
     price: Number,
     file: String,
     img: String,
-    datetime: Date,
     gender_id: {
       type: Schema.Types.ObjectId,
       ref: "Genders",
@@ -22,15 +20,7 @@ const productSchema = Schema(
       type: Schema.Types.ObjectId,
       ref: "TypeProducts",
     },
-    quantity: [
-      {
-        size_id: {
-          type: Schema.Types.ObjectId,
-          ref: "SizeProducts",
-        },
-        amount: Number,
-      },
-    ],
+    quantity: Number,
     status_favorite: false,
   },
   {
