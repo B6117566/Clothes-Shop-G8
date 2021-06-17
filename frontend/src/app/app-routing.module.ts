@@ -1,3 +1,4 @@
+import { ManageCardItemAddComponent } from './components/manage-product/manage-card-item-add/manage-card-item-add.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SingnupComponent },
   { path: 'edit', component: EditComponent },
+  { path: 'addproduct', component: ManageCardItemAddComponent },
   { path: 'oder', component: OderComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];

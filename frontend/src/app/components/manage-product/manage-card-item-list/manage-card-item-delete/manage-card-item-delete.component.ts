@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, Input, OnInit } from '@angular/core';
 import { ProductsService } from 'src/app/services/products.service';
 
@@ -9,12 +10,11 @@ import { ProductsService } from 'src/app/services/products.service';
 export class ManageCardItemDeleteComponent implements OnInit {
   @Input() idProductSelect: string;
 
-  constructor(private ps: ProductsService) {}
+  constructor(private ps: ProductsService,private router: Router) {}
 
   ngOnInit(): void {}
 
   deleteProduct() {
-    console.log("TEST DELETE55555",this.idProductSelect)
     this.ps.deleteProduct(this.idProductSelect).subscribe(
       (data) => {
         alert(data.message);
@@ -23,5 +23,6 @@ export class ManageCardItemDeleteComponent implements OnInit {
         console.log(err);
       }
     );
+    this.router.navigate(['/manage-product'])
   }
 }

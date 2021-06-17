@@ -62,6 +62,10 @@ export class SingnupComponent implements OnInit {
       }
     );
   }
+
+  resetForm() {
+    this.signupForm.reset();
+  }
   get signupFormMethod() {
     return this.signupForm.controls;
   }

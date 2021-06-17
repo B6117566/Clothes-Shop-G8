@@ -116,11 +116,11 @@ export class CarditemComponent implements OnInit, AfterContentChecked {
           },
           (err) => {
             console.log(err);
+            alert("Cannot Find Product you want")
           }
         );
     } else {
       this.onLoading();
     }
   }
-  delFavorite(id: number) {}
 }

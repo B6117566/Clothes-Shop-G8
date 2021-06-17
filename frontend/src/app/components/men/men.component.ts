@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl,Validators } from '@angular/forms';
 import { CarditemComponent } from '../carditem/carditem.component';
 
 @Component({
@@ -11,7 +11,7 @@ export class MenComponent implements OnInit {
 
   @ViewChild(CarditemComponent) cardItem: CarditemComponent
 
-  searchText = new FormControl('')
+  searchText = new FormControl('', [Validators.required])
   genderStatus: string
   selectType: string
 
@@ -30,7 +30,9 @@ export class MenComponent implements OnInit {
   }
 
   search(){
-    this.cardItem.search()
+    if (this.searchText.value.length > 0) {
+      this.cardItem.search()
+    }
   }
 
 }

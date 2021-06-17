@@ -20,9 +20,7 @@
   <div *ngFor="let item of products; index as i">
     <div class="col">
       <div class="card shadow-sm mb-4">
-        <img
-          src="https://image.uniqlo.com/UQ/ST3/th/imagesgoods/442868/item/thgoods_69_442868.jpg?width=1008&impolicy=quality_75"
-          class="card-img-top" alt="..." />
+        <img [src]="item.img" class="card-img-top" alt="..." />
         <div class="card-body">
           <h5 class="card-title font-weight-bold">
             {{ item.name }}
@@ -33,15 +31,16 @@
             <b><u>{{ item.quantity }}</u></b>
             ชิ้น
           </h6>
-          <a href="#" class="card-link">
-            <i class="bi bi-info-circle-fill" style="margin-right: 10px"></i>ดูรายละเอียดสินค้า</a>
+          <a class="card-link" data-toggle="modal" data-target="#modalProductShow"
+          (click)="showProduct(i)">
+            <i class="bi bi-info-circle-fill" style="margin-right: 10px" ></i>ดูรายละเอียดสินค้า</a>
           <hr />
           <div class="row justify-content-center pb-2">
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalProductSelect"
-              (click)="selectProduct(i)">
+            (click)="selectProduct(i)">
               <i class="bi bi-pencil-square" style="margin-right: 10px">‎</i>แก้ไข
             </button>
-            <app-manage-card-item-edit [productSelect]="productSelect"></app-manage-card-item-edit>
+            <app-manage-card-item-edit [productSelect]='productSelect'></app-manage-card-item-edit>
           </div>
           <div class="row justify-content-center">
             <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#modalProductDelete"
@@ -51,8 +50,38 @@
             <app-manage-card-item-delete [idProductSelect]="idProductSelect"></app-manage-card-item-delete>
           </div>
         </div>
-        <div class="card-footer text-center text-muted bg-transparent">
-          <i class="bi bi-arrow-repeat"> อัพเดทล่าสุด 3 นาทีที่แล้ว‎</i>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modalProductShow" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="justify-content-center row-cols-lg-2 row-cols-1 row mb-2">
+          <div class="col mb-3">
+            <img [src]="productShow.img" class="img-fluid" style="size: 75%;">
+          </div>
+          <div class="col">
+            <div class="col bg-white border-bottom" style="min-height: 80px">
+              <h2 class="text-break font-weight-bolder">{{productShow.name}}</h2>
+              <hr>
+              <h3 class="text-break font-weight-bolder">THB {{productShow.price}}</h3>
+              <hr>
+              <p class="text-break font-weight-light">{{productShow.detail}}.</p>
+            </div>
+            <div class="col">
+              <br>
+              <p class="text-break font-weight-bolder">มีสินค้าทั้งหมด: {{productShow.quantity}} ชิ้น</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
