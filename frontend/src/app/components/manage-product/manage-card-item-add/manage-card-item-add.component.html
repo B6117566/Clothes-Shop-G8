@@ -1,1 +1,124 @@
-<p>manage-card-item-add works!</p>
+<div class="container pt-4">
+    <h2 class="text-break font-weight-bolder">เพิ่มผลิตภัณฑ์</h2><br>
+    <div class="card shadow">
+        <div class="card-body">
+            <form [formGroup]="productFrom">
+                <div class="row">
+                  <div class="col-6">
+                    <h6 class="font-weight-normal">ชื่อสินค้า</h6>
+                    <input type="text" class="form-control" formControlName="name"><br>
+                    <div
+                      *ngIf="productFromMethod.name.invalid && (productFromMethod.name.dirty || productFromMethod.name.touched)">
+                      <div *ngIf="productFromMethod.name.errors.required" class="alert alert-danger">
+                        name is required.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <h6 class="font-weight-normal">รายละเอียด</h6>
+                    <input type="text" class="form-control" formControlName="detail"><br>
+                    <div
+                      *ngIf="productFromMethod.detail.invalid && (productFromMethod.detail.dirty || productFromMethod.detail.touched)">
+                      <div *ngIf="productFromMethod.detail.errors.required" class="alert alert-danger">
+                        detail is required.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <h6 class="font-weight-normal">ราคา</h6>
+                    <input type="text" class="form-control" formControlName="price"><br>
+                    <div
+                      *ngIf="productFromMethod.price.invalid && (productFromMethod.price.dirty || productFromMethod.price.touched)">
+                      <div *ngIf="productFromMethod.price.errors.required" class="alert alert-danger">
+                        price is required.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <h6 class="font-weight-normal">จำนวน</h6>
+                    <input type="text" class="form-control" formControlName="quantity"><br>
+                    <div
+                      *ngIf="productFromMethod.quantity.invalid && (productFromMethod.quantity.dirty || productFromMethod.quantity.touched)">
+                      <div *ngIf="productFromMethod.quantity.errors.required" class="alert alert-danger">
+                        quantity is required.
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-6">
+                    <h6 class="font-weight-normal">ประเภท</h6>
+                    <select class="form-control" name="Origins" formControlName="typeproduct_id">
+                        <option *ngFor="let item of typeProducts" value="{{item._id}}">{{item.name}}</option>
+                    </select><br>
+                    <div
+                      *ngIf="productFromMethod.typeproduct_id.invalid && (productFromMethod.typeproduct_id.dirty || productFromMethod.typeproduct_id.touched)">
+                      <div *ngIf="productFromMethod.typeproduct_id.errors.required" class="alert alert-danger">
+                        typeproduct is required.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <h6 class="font-weight-normal">ผลิตภัณฑ์ของเพศ</h6>
+                    <select class="form-control" name="Origins" formControlName="gender_id">
+                        <option *ngFor="let item of genders" value="{{item._id}}">{{item.name}}</option>
+                    </select><br>
+                    <div
+                      *ngIf="productFromMethod.gender_id.invalid && (productFromMethod.gender_id.dirty || productFromMethod.gender_id.touched)">
+                      <div *ngIf="productFromMethod.gender_id.errors.required" class="alert alert-danger">
+                        gender is required.
+                      </div>
+                    </div>
+                  </div>
+            
+                  <div class="col-12">
+                    <br>
+                    <hr>
+                    <h4 class="font-weight-bolder">รูปภาพ</h4>
+            
+                  </div>
+                  <div class="col-6 pt-3">
+                    <h6 class="font-weight-normal">Path Image:</h6>
+                    <div class="form-group">
+                      <input type="file" class="form-control-file" formControlName="file" (change)="onChangeImg($event)" />
+                    </div><br>
+                    <div *ngIf="productFromMethod.file.invalid">
+                      <div *ngIf="productFromMethod.file.errors.required" class="alert alert-danger">
+                        File is required.
+                      </div>
+                    </div>
+                  </div>
+            
+                  <div class="col-6 pt-3">
+                    <h6 class="font-weight-normal">Image:</h6>
+                    <div class="col-md-9">
+                      <img *ngIf="previewLoaded" class="img-thumbnail" [src]="this.productFrom.value.img"
+                        style="height: 70%; width: 70%;" />
+                    </div><br>
+                    <div *ngIf="productFromMethod.img.invalid">
+                      <div *ngIf="productFromMethod.img.errors.required" class="alert alert-danger">
+                        Image is required.
+                      </div>
+                    </div>
+                  </div>
+                  <hr>
+                  
+                  <div class="container justify-content-center w-50">
+                    <div class=" row">
+                      <button type="submit" class="btn btn-dark w-100 rounded-pill" (click)="addProduct()">บันทึกข้อมูล</button>
+                    </div>
+                    <div class=" row pt-2">
+                      <button type="button" class="btn btn-secondary rounded-pill col custom-fade" style=" font-size: large"
+                        data-dismiss="modal">
+                        ยกเลิก
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+        </div>
+    </div>
+</div>
+
+
+
+  

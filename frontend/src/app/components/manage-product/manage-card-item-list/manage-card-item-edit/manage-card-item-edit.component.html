@@ -8,32 +8,94 @@
         </button>
       </div>
       <div class="modal-body">
-        <div class="justify-content-center row-cols-lg-2 row-cols-1 row mb-2">
-          <div class="col mb-3">
-            <img [src]="productSelect.img" class="img-fluid" style="size: 75%;">
-          </div>
-          <div class="col">
-            <div class="col bg-white border-bottom" style="min-height: 80px">
-              <h2 class="text-break font-weight-bolder">{{productSelect.name}}</h2>
-              <hr>
-              <h2 class="text-break font-weight-bolder">THB {{productSelect.price}}</h2>
-              <hr>
-              <p class="text-break font-weight-light">{{productSelect.detail}}.</p>
-            </div>
-            <div class="col">
-              <br>
-              <p class="text-break font-weight-bolder">ขนาด: </p>
-              <br>
-              <p class="text-break font-weight-bolder">จํานวน</p>
-              <div class="form-group">
-                <input type="number" class="form-control" name="" id="" aria-describedby="helpId" style="width: 150px;"
-                  value=1>
+        <form [formGroup]="productFrom">
+          <div class="row">
+            <div class="col-6">
+              <h6 class="font-weight-normal">ชื่อสินค้า</h6>
+              <input type="text" class="form-control" formControlName="name"><br>
+              <div
+                *ngIf="productFormMethod.name.invalid && (productFormMethod.name.dirty || productFormMethod.name.touched)">
+                <div *ngIf="productFormMethod.name.errors.required" class="alert alert-danger">
+                  name is required.
+                </div>
               </div>
-              <p class="text-break font-weight-bolder">มีสินค้าทั้งหมด: 112 ชิ้น</p>
-              <button type="button" class="btn btn-danger btn-lg btn-block">เพิ่มลงในตะกร้า</button>
+            </div>
+            <div class="col-6">
+              <h6 class="font-weight-normal">รายละเอียด</h6>
+              <input type="text" class="form-control" formControlName="detail"><br>
+              <div
+                *ngIf="productFormMethod.detail.invalid && (productFormMethod.detail.dirty || productFormMethod.detail.touched)">
+                <div *ngIf="productFormMethod.detail.errors.required" class="alert alert-danger">
+                  detail is required.
+                </div>
+              </div>
+            </div>
+            <div class="col-6">
+              <h6 class="font-weight-normal">ราคา</h6>
+              <input type="text" class="form-control" formControlName="price"><br>
+              <div
+                *ngIf="productFormMethod.price.invalid && (productFormMethod.price.dirty || productFormMethod.price.touched)">
+                <div *ngIf="productFormMethod.price.errors.required" class="alert alert-danger">
+                  price is required.
+                </div>
+              </div>
+            </div>
+            <div class="col-6">
+              <h6 class="font-weight-normal">จำนวน</h6>
+              <input type="text" class="form-control" formControlName="quantity"><br>
+              <div
+                *ngIf="productFormMethod.quantity.invalid && (productFormMethod.quantity.dirty || productFormMethod.quantity.touched)">
+                <div *ngIf="productFormMethod.quantity.errors.required" class="alert alert-danger">
+                  quantity is required.
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12">
+              <br>
+              <hr>
+              <h4 class="font-weight-bolder">รูปภาพ</h4>
+
+            </div>
+            <div class="col-6 pt-3">
+              <h6 class="font-weight-normal">Path Image:</h6>
+              <div class="form-group">
+                <input type="file" class="form-control-file" formControlName="file" (change)="onChangeImg($event)" />
+              </div><br>
+              <div *ngIf="productFormMethod.file.invalid">
+                <div *ngIf="productFormMethod.file.errors.required" class="alert alert-danger">
+                  File is required.
+                </div>
+              </div>
+            </div>
+
+            <div class="col-6 pt-3">
+              <h6 class="font-weight-normal">Image:</h6>
+              <div class="col-md-9">
+                <img *ngIf="previewLoaded" class="img-thumbnail" [src]="this.productFrom.value.img"
+                  style="height: 70%; width: 70%;" />
+              </div><br>
+              <div *ngIf="productFormMethod.img.invalid">
+                <div *ngIf="productFormMethod.img.errors.required" class="alert alert-danger">
+                  Image is required.
+                </div>
+              </div>
+            </div>
+            <hr>
+            
+            <div class="container justify-content-center w-50">
+              <div class=" row">
+                <button type="submit" class="btn btn-dark w-100 rounded-pill" (click)="update()">บันทึกข้อมูล</button>
+              </div>
+              <div class=" row pt-2">
+                <button type="button" class="btn btn-secondary rounded-pill col custom-fade" style=" font-size: large"
+                  data-dismiss="modal">
+                  ยกเลิก
+                </button>
+              </div>
             </div>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   </div>

@@ -7,6 +7,22 @@ const Product = require("../model/product.model");
 const Favorite = require("../model/favorite.model");
 //--------------------------------------------------------------------------
 
+const getGenderlist = async () => {
+  return new Promise((resolve, reject) => {
+    Gender.find({}, (err, data) => {
+      if (err) {
+        reject(new Error("Cannot get Genders"));
+      } else {
+        if (data.length != 0) {
+          resolve(data);
+        } else {
+          reject(new Error("Cannot get Genders"));
+        }
+      }
+    });
+  });
+};
+
 const findGenders = async (data) => {
   return new Promise((resolve, reject) => {
     Gender.findOne({ name: { $regex: data } }, (err, data) => {
@@ -78,6 +94,18 @@ const getFavoritesByID = async (id) => {
 };
 
 //--------------------------------------------------------------------------
+
+router.route("/get").get((req, res) => {
+  getGenderlist()
+    .then((result) => {
+      res.status(200).json(result);
+    })
+    .catch((err) => {
+      res.status(404).send(String(err));
+    });
+});
+
+
 //ส่งคำว่า Men หรือ Women เข้ามาหลัง all/
 router.route("/get/all/:gender").get((req, res) => {
   findGenders(new RegExp(req.params.gender))
