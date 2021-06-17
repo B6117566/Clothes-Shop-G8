@@ -14,7 +14,6 @@ export class MenService {
   getMenProduct(gender?: any) {
     let token = this.local.get('user').token;
     let user_id = this.local.get('user').result.id;
-    console.log(token, user_id)
     return this.http
       .get<any>(
         'http://localhost:3000/api/genders/get/all/' + gender + '/' + user_id,

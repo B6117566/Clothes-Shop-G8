@@ -25,7 +25,6 @@ expressApp.use(expressFunction.json(), database);
 expressApp.use("/api/usertypes", require("./api/usertype"));
 expressApp.use("/api/users", require("./api/user"));
 expressApp.use("/api/typeproducts", require("./api/typeproduct"));
-expressApp.use("/api/sizeproducts", require("./api/sizeproduct"));
 expressApp.use("/api/products", require("./api/product"));
 expressApp.use("/api/orderhistorys", require("./api/orderhistory"));
 expressApp.use("/api/genders", require("./api/gender"));

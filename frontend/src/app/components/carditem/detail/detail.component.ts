@@ -2,6 +2,7 @@ import { Component, Input, OnChanges, OnInit , Output, EventEmitter } from '@ang
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { FavoritesService } from 'src/app/services/favorites.service';
 import { LocalStorageService } from 'angular-web-storage';
+import { CartsService } from 'src/app/services/carts.service';
 
 @Component({
   selector: 'app-detail',
@@ -13,17 +14,23 @@ export class DetailComponent implements OnInit, OnChanges {
   @Input() productSelect: any;
   @Output() massageEvent = new EventEmitter<string>()
 
-  constructor(private fr: FavoritesService, public local: LocalStorageService) {}
+  amout = new FormControl(1,[Validators.required, Validators.min(1)])
+
+  constructor(private fr: FavoritesService, public local: LocalStorageService, private cart: CartsService) {}
 
   ngOnInit(): void {
   }
 
   ngOnChanges() {}
 
-  size = new FormControl();
-
   addCart() {
-    console.log(this.size.value);
+    this.cart.addCart(this.productSelect._id, this.amout.value).subscribe(
+      (data) => {
+        alert(data.message)
+      }, (err) => {
+        alert("Cannot add product cart")
+      }
+    )
   }
 
   addFavorite() {

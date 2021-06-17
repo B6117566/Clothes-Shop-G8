@@ -43,7 +43,6 @@ export class EditComponent implements OnInit {
   }
 
   update() {
-    console.log(this.signupForm.value);
     this.signup.updateUserData(this.signupForm.value).subscribe(
       (data) => {
         if (data.message) {

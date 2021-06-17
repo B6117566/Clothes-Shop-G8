@@ -22,32 +22,11 @@
             </div>
             <div class="col">
               <br>
-              <p class="text-break font-weight-bolder">ขนาด: {{size.value}}</p>
-              <div class="btn-group btn-group-toggle form-group" data-toggle="buttons" style="width: 300px;">
-                <label class="btn btn-outline-dark form-control">
-                  <input type="radio" name="options" id="option1" autocomplete="off" value="XS" [formControl]="size"> XS
-                </label>
-                <label class="btn btn-outline-dark  form-control">
-                  <input type="radio" name="options" id="option2" autocomplete="off" value="S" [formControl]="size"> S
-                </label>
-                <label class="btn btn-outline-dark  form-control">
-                  <input type="radio" name="options" id="option3" autocomplete="off" value="M" [formControl]="size"> M
-                </label>
-                <label class="btn btn-outline-dark  form-control">
-                  <input type="radio" name="options" id="option4" autocomplete="off" value="XL" [formControl]="size"> XL
-                </label>
-                <label class="btn btn-outline-dark  form-control">
-                  <input type="radio" name="options" id="option4" autocomplete="off" value="XXL" [formControl]="size">
-                  XXL
-                </label>
-              </div>
-              <br>
               <p class="text-break font-weight-bolder">จํานวน</p>
               <div class="form-group">
-                <input type="number" class="form-control" name="" id="" aria-describedby="helpId" style="width: 150px;"
-                  value=1>
+                <input type="number" class="form-control" [formControl]="amout"  style="width: 150px;" min=1 max={{productSelect.quantity}}>
               </div>
-              <p class="text-break font-weight-bolder">มีสินค้าทั้งหมด: 112 ชิ้น</p>
+              <p class="text-break font-weight-bolder">มีสินค้าทั้งหมด: {{productSelect.quantity}} ชิ้น</p><br>
               <div class="row">
                 <div class="col-6">
                   <button type="button" class="btn btn-primary btn-lg btn-block"  (click)="addFavorite()">เพิ่มรายการโปรด</button>

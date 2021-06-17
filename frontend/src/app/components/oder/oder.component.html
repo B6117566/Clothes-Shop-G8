@@ -1,0 +1,23 @@
+<div class="container" style="margin-top: 130px;">
+    <h2 class="text-break font-weight-bolder">ประวัติการซื้อ</h2><br>
+    <div class="card">
+        <div class="card-body col">
+            <div class="col">
+                <div class="bg-white border-bottom row" style="height: 250px" *ngFor="let item of orders">
+                    <div class="col-3">
+                        <br /><img [src]="item.product_id.img" style="width: 85%" />
+                    </div>
+                    <div class="col-8" style="padding: 0%">
+                        <br />
+                        <p class="text-break font-weight-bolder">{{item.product_id.name}}</p>
+                        <p class="text-break font-weight-bolder">
+                            THB {{item.product_id.price}}
+                        </p>
+                        <p class="text-break text-muted">รหัสสินค้า: {{item.product_id._id}}</p>
+                        <p class="text-break text-muted">จํานวน: {{item.quantity}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

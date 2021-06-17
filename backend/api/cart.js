@@ -8,7 +8,7 @@ const Cart = require("../model/cart.model");
 
 const findCartByID = async (id) => {
   return new Promise((resolve, reject) => {
-    Cart.find({ _id: id }, (err, data) => {
+    Cart.find({ user_id: id }, (err, data) => {
       if (err) {
         reject(new Error("Cannot find Carts"));
       } else {

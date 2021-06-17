@@ -1,50 +1,23 @@
 <div>
-    <div class="bg-white border-bottom row" style="height: 250px;">
-        <div class="col-4">
+    <div class="bg-white border-bottom row" style="height: 250px;" *ngFor="let item of carts; index as i">
+        <div class="col-4" [count]="i" >
             <br><img
-                src="https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/433031/item/goods_29_433031.jpg?width=1600&impolicy=quality_75"
+                [src]="item.product_id.img"
                 style="width: 100%;">
         </div>
         <div class="col-7" style="padding: 0%;">
             <br>
-            <h3 class="text-break font-weight-bolder">MEN UNIQLO U เสื้อ คอกลม ทรงหลวม (Unisex)</h3>
-            <p class="text-break font-weight-bolder">THB 590.00</p>
-            <p class="text-break text-muted">รหัสสินค้า: 101123</p>
+            <h3 class="text-break font-weight-bolder">{{item.product_id.name}}</h3>
+            <p class="text-break font-weight-bolder">THB {{item.product_id.price}}</p>
+            <p class="text-break text-muted">รหัสสินค้า: {{item.product_id._id}}</p>
             <div class="form-group row" style="margin-left: 1px;">
-                <input type="number" class="form-control" name="" id="" aria-describedby="helpId" style="width: 130px;"
-                    value=1>
-                <p class="text-break font-weight-bolder" style="margin-left: 80px;">ยอดรวม: THB 1590.00</p>
+                <p class="text-break text-muted">จํานวน: {{item.quantity}}</p>
             </div>
         </div>
         <div class="col-1" style="margin-top: 30px;">
-            <button type="button" class="close" aria-label="Close">
+            <button type="button" class="close" aria-label="Close" (click)="delCart(item._id)">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
     </div>
-
-    <div class="bg-white border-bottom row" style="height: 250px;">
-        <div class="col-4">
-            <br><img
-                src="https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/433031/item/goods_29_433031.jpg?width=1600&impolicy=quality_75"
-                style="width: 100%;">
-        </div>
-        <div class="col-7" style="padding: 0%;">
-            <br>
-            <h3 class="text-break font-weight-bolder">MEN UNIQLO U เสื้อ คอกลม ทรงหลวม (Unisex)</h3>
-            <p class="text-break font-weight-bolder">THB 590.00</p>
-            <p class="text-break text-muted">รหัสสินค้า: 101123</p>
-            <div class="form-group row" style="margin-left: 1px;">
-                <input type="number" class="form-control" name="" id="" aria-describedby="helpId" style="width: 130px;"
-                    value=1>
-                <p class="text-break font-weight-bolder" style="margin-left: 80px;">ยอดรวม: THB 1590.00</p>
-            </div>
-        </div>
-        <div class="col-1" style="margin-top: 30px;">
-            <button type="button" class="close" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-    </div>
-    
 </div>
