@@ -19,20 +19,24 @@
             <div class="col-6">
                 <ul class="nav justify-content-end">
                     <div class="dropdown">
-                        <a class="nav-link text-dark" href="#" id="dropdownMenuLink" data-toggle="dropdown">
+                        <a class="nav-link text-dark" href="login" id="dropdownMenuLink" data-toggle="dropdown">
                             <i class="bi bi-person-circle" style="font-size: 22px"></i>
                         </a>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="margin-top: 14px">
+                        <div *ngIf="status_icon == true" class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="margin-top: 14px">
                             <a class="dropdown-item" href="edit">แก้ไขบัญชี</a>
                             <a class="dropdown-item" href="oder">ประวัติการซื้อ</a>
-                            <a class="dropdown-item" href="#">ออกจากระบบ</a>
+                            <a class="dropdown-item" (click)='signout()'>ออกจากระบบ</a>
                         </div>
+                        
                     </div>
                     <a class="nav-link text-dark" href="favorite">
                         <i class="bi bi-heart-fill" style="font-size: 22px"></i>
                     </a>
                     <a class="nav-link text-dark" href="cart">
                         <i class="bi bi-cart-fill" style="font-size: 22px"></i>
+                    </a>
+                    <a  *ngIf="status_icon == false" class="nav-link text-dark" href="login">
+                        <i class="bi bi-box-arrow-in-right" style="font-size: 22px"></i>
                     </a>
                 </ul>
             </div>

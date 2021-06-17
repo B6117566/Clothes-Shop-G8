@@ -42,14 +42,14 @@ export class CarditemComponent implements OnInit, AfterContentChecked {
   ngOnInit(): void {
     this.product_id = undefined;
     this.productSelect = '';
-    if (this.selectType != undefined || this.selectType != null) {
+    if (this.local.get('user') != undefined || this.local.get('user') != null) {
       this.check_token = true;
     }
     this.onLoading();
   }
 
   ngAfterContentChecked() {
-    if (this.check_token == true) {
+    if (this.selectType != undefined) {
       this.products = this.productLoad.filter((data) => {
         if (data.typeproduct_id.name === this.selectType) {
           return data;

@@ -2,16 +2,21 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UsersService } from 'src/app/services/users.service';
+import { LocalStorageService } from 'angular-web-storage';
 
 @Component({
   selector: 'app-edit',
   templateUrl: './edit.component.html',
-  styleUrls: ['./edit.component.css']
+  styleUrls: ['./edit.component.css'],
 })
 export class EditComponent implements OnInit {
   usertype_id: any;
 
-  constructor(private signup: UsersService, private router: Router) {}
+  constructor(
+    private signup: UsersService,
+    private router: Router,
+    private local: LocalStorageService
+  ) {}
 
   signupForm = new FormGroup({
     firstname: new FormControl('', [Validators.required]),
@@ -20,14 +25,17 @@ export class EditComponent implements OnInit {
       Validators.required,
       Validators.pattern('[0-9]{8,12}'),
     ]),
-    address: new FormControl('', [Validators.required])
+    address: new FormControl('', [Validators.required]),
   });
 
   ngOnInit(): void {
-    this.onLoading()
+    this.onLoading();
   }
 
-  onLoading(){
+  onLoading() {
+    if (this.local.get('user') == undefined || this.local.get('user') == null) {
+      this.router.navigate(['/login']);
+    }
     this.signup.getUserData().subscribe(
       (data) => {
         this.signupForm.setValue({
@@ -35,11 +43,12 @@ export class EditComponent implements OnInit {
           lastname: data.lastname,
           phone: data.phone,
           address: data.address,
-        })
-      }, (err) => {
-        console.log(err)
+        });
+      },
+      (err) => {
+        console.log(err);
       }
-    )
+    );
   }
 
   update() {
@@ -61,5 +70,4 @@ export class EditComponent implements OnInit {
   get signupFormMethod() {
     return this.signupForm.controls;
   }
-
 }
