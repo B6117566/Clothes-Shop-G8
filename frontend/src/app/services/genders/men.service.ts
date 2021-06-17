@@ -56,4 +56,35 @@ export class MenService {
         })
       );
   }
+
+  //-----------------------------------------------------------------
+  //when no login
+
+  getMenProductNoLogin(gender?: any) {
+    return this.http
+      .get<any>('http://localhost:3000/api/genders/get/all/' + gender)
+      .pipe(
+        map((data) => {
+          if (data) {
+            this.product = data;
+          }
+          return this.product;
+        })
+      );
+  }
+
+  searchMenProductNoLogin(gender?: any, searchText?: any) {
+    return this.http
+      .get<any>(
+        'http://localhost:3000/api/genders/get/' + gender + '/' + searchText)
+      .pipe(
+        map((data) => {
+          if (data) {
+            this.product = data;
+            console.log(this.product);
+          }
+          return this.product;
+        })
+      );
+  }
 }

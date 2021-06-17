@@ -17,6 +17,16 @@
     </div>
   </div>
 
+  <div class="container mb-4">
+    <div class="row justify-content-center">
+      <a href="addproduct" class="w-100 row justify-content-center" routerLinkActive="active"> 
+        <button type="button" class="btn btn-success w-75" style="height: 4rem;">
+          <h4 class="display-5">เพิ่มรายการสินค้า</h4>
+        </button>
+      </a>
+    </div>
+  </div>
+
   <div class="container fixed-top position-sticky" style="top: 6rem">
     <div class="row justify-content-center">
       <div class="input-group mb-3 mx-5 bg-light custom-fade" style="max-width: 700px">
@@ -30,6 +40,7 @@
       </div>
     </div>
   </div>
+
 
   <div class="container p-3">
     <app-manage-card-item-list [searchText]="searchText"></app-manage-card-item-list>

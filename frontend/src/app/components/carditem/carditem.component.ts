@@ -7,7 +7,7 @@ import {
   AfterContentChecked,
   AfterContentInit,
 } from '@angular/core';
-
+import { LocalStorageService } from 'angular-web-storage';
 import { FavoritesService } from 'src/app/services/favorites.service';
 import { MenService } from 'src/app/services/genders/men.service';
 import { WomenService } from 'src/app/services/genders/women.service';
@@ -18,7 +18,6 @@ import { WomenService } from 'src/app/services/genders/women.service';
   styleUrls: ['./carditem.component.css'],
 })
 export class CarditemComponent implements OnInit, AfterContentChecked {
-  
   @Input() genderStatus: string;
   @Input() selectType: string;
   @Input() searchText: any;
@@ -31,20 +30,26 @@ export class CarditemComponent implements OnInit, AfterContentChecked {
 
   heart: any;
 
+  check_token: boolean = false;
+
   constructor(
     private fr: FavoritesService,
     private men: MenService,
-    private women: WomenService
+    private women: WomenService,
+    private local: LocalStorageService
   ) {}
 
   ngOnInit(): void {
     this.product_id = undefined;
     this.productSelect = '';
+    if (this.selectType != undefined || this.selectType != null) {
+      this.check_token = true;
+    }
     this.onLoading();
   }
 
   ngAfterContentChecked() {
-    if (this.selectType != undefined) {
+    if (this.check_token == true) {
       this.products = this.productLoad.filter((data) => {
         if (data.typeproduct_id.name === this.selectType) {
           return data;
@@ -55,46 +60,72 @@ export class CarditemComponent implements OnInit, AfterContentChecked {
 
   onLoading() {
     try {
-      if (this.genderStatus == 'Men') {
-        this.men.getMenProduct(this.genderStatus).subscribe(
-          (data) => {
-            this.productLoad = data;
-            this.products = data;
-          },
-          (err) => {
-            console.log(err);
-          }
-        );
-      } else if (this.genderStatus == 'Women') {
-        this.women.getWomenProduct(this.genderStatus).subscribe(
-          (data) => {
-            this.productLoad = data;
-            this.products = data;
-          },
-          (err) => {
-            console.log(err);
-          }
-        );
-      }
-      this.fr.getFavorites().subscribe(
-        (data) => {
-          this.favorites = data;
-        },
-        (err) => {
-          console.log(err);
+      if (this.check_token == true) {
+        if (this.genderStatus == 'Men') {
+          this.men.getMenProduct(this.genderStatus).subscribe(
+            (data) => {
+              this.productLoad = data;
+              this.products = data;
+            },
+            (err) => {
+              console.log(err);
+            }
+          );
+        } else if (this.genderStatus == 'Women') {
+          this.women.getWomenProduct(this.genderStatus).subscribe(
+            (data) => {
+              this.productLoad = data;
+              this.products = data;
+            },
+            (err) => {
+              console.log(err);
+            }
+          );
         }
-      );
+        this.fr.getFavorites().subscribe(
+          (data) => {
+            this.favorites = data;
+          },
+          (err) => {
+            console.log(err);
+          }
+        );
+      } else {
+        if (this.genderStatus == 'Men') {
+          this.men.getMenProductNoLogin(this.genderStatus).subscribe(
+            (data) => {
+              this.productLoad = data;
+              this.products = data;
+            },
+            (err) => {
+              console.log(err);
+            }
+          );
+        } else if (this.genderStatus == 'Women') {
+          this.women.getWomenProductNoLogin(this.genderStatus).subscribe(
+            (data) => {
+              this.productLoad = data;
+              this.products = data;
+            },
+            (err) => {
+              console.log(err);
+            }
+          );
+        }
+      }
     } catch (error) {
       console.log(error);
     }
   }
 
   receiveData(id) {
-    this.products.map((data) => {
-      if (data._id === id) {
-        data.status_favorite = true;
-      }
-    });
+    if (this.check_token == true) {
+      this.products.map((data) => {
+        if (data._id === id) {
+          data.status_favorite = true;
+        }
+      });
+    }
   }
 
   selectProduct(id: number) {
@@ -103,24 +134,40 @@ export class CarditemComponent implements OnInit, AfterContentChecked {
   }
 
   search() {
-    if (this.searchText.value != "") {
-      this.men
-        .searchMenProduct(
-          this.genderStatus,
-          this.searchText.value,
-        )
-        .subscribe(
-          (data) => {
-            this.productLoad = data;
-            this.products = data;
-          },
-          (err) => {
-            console.log(err);
-            alert("Cannot Find Product you want")
-          }
-        );
+    if (this.check_token == true) {
+      if (this.searchText.value != '') {
+        this.men
+          .searchMenProduct(this.genderStatus, this.searchText.value)
+          .subscribe(
+            (data) => {
+              this.productLoad = data;
+              this.products = data;
+            },
+            (err) => {
+              console.log(err);
+              alert('Cannot Find Product you want');
+            }
+          );
+      } else {
+        this.onLoading();
+      }
     } else {
-      this.onLoading();
+      if (this.searchText.value != '') {
+        this.men
+          .searchMenProductNoLogin(this.genderStatus, this.searchText.value)
+          .subscribe(
+            (data) => {
+              this.productLoad = data;
+              this.products = data;
+            },
+            (err) => {
+              console.log(err);
+              alert('Cannot Find Product you want');
+            }
+          );
+      } else {
+        this.onLoading();
+      }
     }
   }
 }
